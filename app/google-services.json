@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "919145331921",
+    "firebase_url": "https://wayt-bd738.firebaseio.com",
+    "project_id": "wayt-bd738",
+    "storage_bucket": "wayt-bd738.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:919145331921:android:61b2f0856733efd5",
+        "android_client_info": {
+          "package_name": "wayt.com.whatareyourthoughts"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "919145331921-o4jvqj924pgpijmn5ttnsjc1sarhm749.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBKKNfaozZDehqb__jPxp6H5vUoVBq_084"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
