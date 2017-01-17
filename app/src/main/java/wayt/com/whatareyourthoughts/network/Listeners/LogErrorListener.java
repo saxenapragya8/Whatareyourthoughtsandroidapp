@@ -22,7 +22,8 @@ public class LogErrorListener implements Response.ErrorListener {
 
     @Override
     public void onErrorResponse(VolleyError error) {
-        Log.d("ErrorListener", error.toString());
+        Log.d("ErrorListener", error.toString() );
+        error.printStackTrace();
         Toast.makeText(ctx, "Encountered error while connecting to WAYT server", Toast.LENGTH_LONG).show();
     }
 }

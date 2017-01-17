@@ -24,8 +24,9 @@ public class GetAllDisplayDataListener implements Response.Listener<JSONObject> 
 
     @Override
     public void onResponse(JSONObject response) {
-        Log.d("UpdateRegIdListener", "Received all date response response" +  response.toString());
-        Intent errorIntent = new Intent(ctx, ShowAllConversationsActivity.class);
-        ctx.startActivity(errorIntent);
+        Log.d("displayDataResponse", "Received all conversation data response response" +  response.toString());
+        Intent allConvsIntent = new Intent(ctx, ShowAllConversationsActivity.class);
+        allConvsIntent.putExtra("ALL_CONVERSATIONS_DATA", response.toString());
+        ctx.startActivity(allConvsIntent);
     }
 }

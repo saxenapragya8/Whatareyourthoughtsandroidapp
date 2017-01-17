@@ -10,6 +10,7 @@ import android.net.Uri;
 import android.util.Log;
 import android.widget.Toast;
 
+import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -34,6 +35,8 @@ import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.io.OutputStreamWriter;
 import java.net.URL;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.net.ssl.HttpsURLConnection;
 
@@ -41,8 +44,8 @@ public class HttpRequestSender {
 
     private static final String WAYT_SERVER = "https://evil-pumpkin-78760.herokuapp.com/rest/";
     private static final String USER_AUTH_PATH = "user/isuser";
-    private static final String UPDATE_REGID_PATH = "regid/updateregid/";
-    private static final String ALL_DISPLAY_DATA_PATH = "displaydata/getdata/";
+    private static final String UPDATE_REGID_PATH = "regid/updateregid";
+    private static final String ALL_DISPLAY_DATA_PATH = "displaydata/getdata";
     private RequestQueue queue;
     private static HttpRequestSender instance;
 
@@ -75,7 +78,15 @@ public class HttpRequestSender {
     public void updateRegId(int usrId, String regId, Context ctx) {
         try {
             UriComponentsBuilder urlBuilder = UriComponentsBuilder.fromUriString(WAYT_SERVER + UPDATE_REGID_PATH).queryParam("userId", usrId).queryParam("registrationId", regId);
-            JsonObjectRequest updateRegIdReq = new JsonObjectRequest (Request.Method.GET, urlBuilder.toUriString(), null, new UpdateRegistrationIdListener(ctx), new LogErrorListener(ctx));
+            JsonObjectRequest updateRegIdReq = new JsonObjectRequest (Request.Method.POST, urlBuilder.toUriString(), null, new UpdateRegistrationIdListener(ctx), new LogErrorListener(ctx)){
+                @Override
+                public Map<String, String> getHeaders() throws AuthFailureError {
+                    Map<String, String>  params = new HashMap<>();
+                    params.put("Content-Type", "application/json");
+                    params.put("Accept", "application/json");
+                    return params;
+                }
+            };
             queue.add(updateRegIdReq);
         } catch (Exception e) {
             Toast.makeText(ctx.getApplicationContext(), "Error updating registration id", Toast.LENGTH_LONG).show();
@@ -84,8 +95,16 @@ public class HttpRequestSender {
 
     public void getUserConversationsData(int usrId, Context ctx) {
         try {
-            UriComponentsBuilder urlBuilder = UriComponentsBuilder.fromUriString(WAYT_SERVER + ALL_DISPLAY_DATA_PATH).queryParam("userId", usrId);
-            JsonObjectRequest getAllDisplayDataReq = new JsonObjectRequest (Request.Method.GET, urlBuilder.toUriString(), null, new GetAllDisplayDataListener(ctx), new LogErrorListener(ctx));
+            UriComponentsBuilder urlBuilder = UriComponentsBuilder.fromUriString(WAYT_SERVER + ALL_DISPLAY_DATA_PATH).queryParam("usrId", usrId);
+            JsonObjectRequest getAllDisplayDataReq = new JsonObjectRequest (Request.Method.POST, urlBuilder.toUriString(), null, new GetAllDisplayDataListener(ctx), new LogErrorListener(ctx)){
+                @Override
+                public Map<String, String> getHeaders() throws AuthFailureError {
+                    Map<String, String>  params = new HashMap<>();
+                    params.put("Content-Type", "application/json");
+                    params.put("Accept", "application/json");
+                    return params;
+                }
+            };
             queue.add(getAllDisplayDataReq);
         } catch (Exception e) {
             Toast.makeText(ctx.getApplicationContext(), "Error updating registration id", Toast.LENGTH_LONG).show();
