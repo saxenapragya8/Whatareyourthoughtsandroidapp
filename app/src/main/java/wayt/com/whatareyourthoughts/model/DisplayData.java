@@ -1,5 +1,6 @@
 package wayt.com.whatareyourthoughts.model;
 
+import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
@@ -7,15 +8,32 @@ import java.util.List;
  * Created by Pragya on 1/16/2017.
  */
 
-public class DisplayData {
+public class DisplayData implements Serializable{
 
     private String subject;
+    private String inspiration;
     private List<String> participantUsers;
-    private String lastConversation;
-    private Date lastConversationDate;
+    private CommentData lastConversation;
+    private List<CommentData> allComments;
+
+    public List<CommentData> getAllComments() {
+        return allComments;
+    }
+
+    public void setAllComments(List<CommentData> allComments) {
+        this.allComments = allComments;
+    }
 
     public String getSubject() {
         return subject;
+    }
+
+    public String getInspiration() {
+        return inspiration;
+    }
+
+    public void setInspiration(String inspiration) {
+        this.inspiration = inspiration;
     }
 
     public void setSubject(String subject) {
@@ -30,19 +48,11 @@ public class DisplayData {
         this.participantUsers = participantUsers;
     }
 
-    public String getLastConversation() {
+    public CommentData getLastConversation() {
         return lastConversation;
     }
 
-    public void setLastConversation(String lastConversation) {
+    public void setLastConversation(CommentData lastConversation) {
         this.lastConversation = lastConversation;
-    }
-
-    public Date getLastConversationDate() {
-        return lastConversationDate;
-    }
-
-    public void setLastConversationDate(Date lastConversationDate) {
-        this.lastConversationDate = lastConversationDate;
     }
 }

@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/content_show_conversation_comments"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context="wayt.com.whatareyourthoughts.ShowConversationCommentsActivity"
+    tools:showIn="@layout/activity_show_conversation_comments">
+
+    <LinearLayout
+        android:id="@+id/heading"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TableLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TableRow
+                android:layout_weight="1">
+                <TextView android:layout_weight=".8"
+                    android:id="@+id/participants" />
+                <TextView android:layout_weight=".1"
+                    android:id="@+id/date" />
+            </TableRow>
+            <TableRow android:layout_weight="1">
+                <TextView android:layout_weight="1"
+                    android:id="@+id/subject" />
+            </TableRow>
+
+            <TableRow android:layout_weight="1">
+                <TextView android:layout_weight="1"
+                    android:id="@+id/inspiration" />
+            </TableRow>
+        </TableLayout>
+    </LinearLayout>
+
+    <ListView
+        android:id="@+id/displayCommentsListView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/heading">
+    </ListView>
+
+</RelativeLayout>

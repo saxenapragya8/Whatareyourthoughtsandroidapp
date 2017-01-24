@@ -1,6 +1,7 @@
 package wayt.com.whatareyourthoughts.adapters;
 
 import android.content.Context;
+import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,11 +12,20 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
+import java.util.Map;
 
 import wayt.com.whatareyourthoughts.R;
+import wayt.com.whatareyourthoughts.model.CommentData;
 import wayt.com.whatareyourthoughts.model.DisplayData;
+import wayt.com.whatareyourthoughts.responses.CommentResponse;
 
 /**
  * Created by Pragya on 1/16/2017.
@@ -23,12 +33,12 @@ import wayt.com.whatareyourthoughts.model.DisplayData;
 
 public class DisplayDataAdapter extends BaseAdapter{
 
-    List<DisplayData> displayData;
+    List<DisplayData> displayData = new ArrayList<DisplayData>();
     Context ctx;
 
-    public DisplayDataAdapter(JSONObject jsonData, Context ctx){
+    public DisplayDataAdapter(List<DisplayData> displayData, Context ctx){
         this.ctx = ctx;
-        getAllDisplayDataItems(jsonData);
+        this.displayData = displayData;
     }
 
     @Override
@@ -54,33 +64,21 @@ public class DisplayDataAdapter extends BaseAdapter{
             convertView = inflater.inflate(R.layout.display_conversations_row, parent,false);
         }
 
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd", Locale.US);
+
+        parent.setDescendantFocusability(ViewGroup.FOCUS_BLOCK_DESCENDANTS);
         TextView conversationName = (TextView)convertView.findViewById(R.id.conversationName);
-//        TextView itemDescription = (TextView)convertView.findViewById(R.id.itemDescription);
-//        TextView status = (TextView)convertView.findViewById(R.id.status);
+        TextView modifiedLastDate = (TextView)convertView.findViewById(R.id.modifiedLastDate);
+        TextView userNamesList = (TextView)convertView.findViewById(R.id.userNames);
+        TextView content = (TextView)convertView.findViewById(R.id.content);
 
         DisplayData item = displayData.get(position);
 
-        conversationName.setText(item.getSubject());
-//        itemDescription.setText(item.getItemDescription());
-//        status.setText(item.getItemStatus());
-
+        conversationName.setText(item.getSubject().trim());
+        String time=sdf.format(item.getLastConversation().getModifiedDate());
+        modifiedLastDate.setText(time);
+        userNamesList.setText(item.getParticipantUsers().toString().trim());
+        content.setText(Html.fromHtml(item.getLastConversation().getContent().trim()));
         return convertView;
-    }
-
-    private void getAllDisplayDataItems(JSONObject jsonData) {
-        this.displayData = new ArrayList<>();
-        try {
-            JSONArray conversationsData = jsonData.getJSONArray("conversations");
-            for(int i = 0; i < conversationsData.length(); i++){
-                DisplayData data = new DisplayData();
-                data.setSubject(conversationsData.getJSONObject(i).getString("subject"));
-                this.displayData.add(data);
-            }
-
-            JSONArray participationsData = jsonData.getJSONArray("participations");
-            JSONArray commentsData = jsonData.getJSONArray("comments");
-        }catch(JSONException e){
-            e.printStackTrace();
-        }
     }
 }

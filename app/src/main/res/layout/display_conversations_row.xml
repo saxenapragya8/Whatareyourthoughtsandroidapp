@@ -1,16 +1,35 @@
-<?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="fill_parent"
-    android:layout_height="wrap_content"
-    >
+    <TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="90dp"
+        android:orientation="horizontal"
+        android:descendantFocusability="blocksDescendants" >
+        <TableRow android:descendantFocusability="blocksDescendants" android:layout_width="match_parent" >
+            <CheckBox
+                android:id="@+id/checkBox"
+                android:focusable="false"
+                android:descendantFocusability="blocksDescendants" />
 
-    <TextView
-        android:id="@+id/conversationName"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="23dp"
-        android:layout_marginTop="10dp"
-        android:textSize="25sp"
-        android:textStyle="bold" />
+            <TextView
+                android:id="@+id/conversationName"
+                android:textStyle="bold" />
 
-</RelativeLayout>
+            <TextView
+                android:id="@+id/modifiedLastDate" />
+
+        </TableRow>
+        <TableRow android:descendantFocusability="blocksDescendants">
+            <TextView
+                android:id="@+id/userNames"
+                android:layout_weight="1"
+                android:layout_width="fill_parent" />
+        </TableRow>
+        <TableRow android:descendantFocusability="blocksDescendants">
+            <TextView
+                android:id="@+id/content"
+                android:layout_weight="1"
+                android:lines="2"
+                android:layout_width="fill_parent" />
+        </TableRow>
+    </TableLayout>
+
+
