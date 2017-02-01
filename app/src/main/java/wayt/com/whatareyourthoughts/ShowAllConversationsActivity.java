@@ -54,15 +54,6 @@ public class ShowAllConversationsActivity extends ListActivity{
         }
     }
 
-//    @Override
-//    public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
-//        DisplayData displayDataClicked = (DisplayData)adapter.getItem(position);
-//        Intent conversationCommentsActivity = new Intent(view.getContext(), ShowConversationCommentsActivity.class);
-//        conversationCommentsActivity.putExtra("commentData", displayDataClicked);
-//        startActivity(conversationCommentsActivity);
-//        return true;
-//    }
-
     private Map<Integer,List<CommentData>> getCommentDataMap(JSONArray commentsData) throws ParseException, JSONException{
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         Map<Integer, List<CommentData>> commentData = new HashMap<Integer, List<CommentData>>();

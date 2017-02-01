@@ -20,7 +20,7 @@
             android:text="To: "
             android:textIsSelectable="false"
             />
-        <TextInputEditText
+        <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:maxLines="5"
@@ -32,7 +32,7 @@
             android:text="Subject: "
             android:textIsSelectable="false"
             />
-        <TextInputEditText
+        <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:maxLines="2"
@@ -43,7 +43,7 @@
             android:text="Inspiration: "
             android:textIsSelectable="false"
             />
-        <TextInputEditText
+        <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:maxLines="2"
@@ -55,12 +55,19 @@
             android:text="What are your thoughts? "
             android:textIsSelectable="false"
             />
-        <TextInputEditText
+        <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:maxLines="2"
             android:layout_columnSpan="8"
-            android:id="@+id/content" android:minLines="10"/>
+            android:id="@+id/content"
+            android:minLines="10"
+            android:layout_gravity="top"/>
+        <Button
+            android:text="Add"
+            android:onClick="onSaveDataClicked"
+            android:layout_gravity="bottom"/>
+
     </GridLayout>
 
 </RelativeLayout>
