@@ -22,10 +22,10 @@ public class AddNewConversationActivity extends AppCompatActivity {
     }
 
     public void onSaveDataClicked(View view){
-        EditText content = (EditText) view.findViewById(R.id.content);
-        EditText inspiration = (EditText)view.findViewById(R.id.inspiration);
-        EditText subject = (EditText)view.findViewById(R.id.subject);
-        EditText toEmails = (EditText)view.findViewById(R.id.toEmails);
+        EditText content = (EditText) this.findViewById(R.id.content);
+        EditText inspiration = (EditText)this.findViewById(R.id.inspiration);
+        EditText subject = (EditText)this.findViewById(R.id.subject);
+        EditText toEmails = (EditText)this.findViewById(R.id.toEmails);
 
         Editable comment = content.getText();
         String formatSavingText = Html.toHtml(comment);

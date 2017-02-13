@@ -91,6 +91,7 @@ public class ShowAllConversationsActivity extends ListActivity{
                 for (int j=0; j<convParticipantsList.length(); j++) {
                     participants.add( convParticipantsList.getString(j) );
                 }
+                data.setConvId(conversationsData.getJSONObject(i).getInt("id"));
                 data.setSubject(conversationsData.getJSONObject(i).getString("subject"));
                 data.setInspiration(conversationsData.getJSONObject(i).getString("sourceLink"));
                 data.setParticipantUsers(participants);

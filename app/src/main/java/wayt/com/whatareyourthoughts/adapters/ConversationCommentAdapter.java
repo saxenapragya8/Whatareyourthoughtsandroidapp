@@ -39,7 +39,7 @@ public class ConversationCommentAdapter extends BaseAdapter{
 
     @Override
     public int getCount() {
-        return commentsData.size();
+        return commentsData.size() + 1;
     }
 
     @Override
@@ -54,24 +54,32 @@ public class ConversationCommentAdapter extends BaseAdapter{
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        if(convertView == null)
-        {
-            LayoutInflater inflater = (LayoutInflater) ctx.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            convertView = inflater.inflate(R.layout.conversation_comment_row, parent,false);
+        if(position < commentsData.size() ) {
+
+            if (convertView == null) {
+                LayoutInflater inflater = (LayoutInflater) ctx.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+                convertView = inflater.inflate(R.layout.conversation_comment_row, parent, false);
+            }
+
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd", Locale.US);
+            CommentData item = commentsData.get(position);
+
+            TextView participantUser = (TextView) convertView.findViewById(R.id.participantUser);
+            participantUser.setText(item.getUserName());
+
+            TextView creationDate = (TextView) convertView.findViewById(R.id.creationDate);
+            creationDate.setText(sdf.format(item.getModifiedDate()));
+
+            TextView content = (TextView) convertView.findViewById(R.id.commentContent);
+            content.setText(Html.fromHtml(item.getContent()));
+
+            return convertView;
+        } else {
+            if (convertView == null) {
+                LayoutInflater inflater = (LayoutInflater) ctx.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+                convertView = inflater.inflate(R.layout.new_comment_row, parent, false);
+            }
+            return convertView;
         }
-
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd", Locale.US);
-        CommentData item = commentsData.get(position);
-
-        TextView participantUser = (TextView)convertView.findViewById(R.id.participantUser);
-        participantUser.setText(item.getUserName());
-
-        TextView creationDate = (TextView)convertView.findViewById(R.id.creationDate);
-        creationDate.setText(sdf.format(item.getModifiedDate()));
-
-        TextView content = (TextView)convertView.findViewById(R.id.commentContent);
-        content.setText(Html.fromHtml(item.getContent()));
-
-        return convertView;
     }
 }

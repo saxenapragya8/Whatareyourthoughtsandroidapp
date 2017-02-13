@@ -23,6 +23,8 @@ import org.json.JSONObject;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import wayt.com.whatareyourthoughts.R;
+import wayt.com.whatareyourthoughts.network.Listeners.AddNewCommentErrorListener;
+import wayt.com.whatareyourthoughts.network.Listeners.AddNewCommentListener;
 import wayt.com.whatareyourthoughts.network.Listeners.AddNewConversationErrorListener;
 import wayt.com.whatareyourthoughts.network.Listeners.AddNewConversationListener;
 import wayt.com.whatareyourthoughts.network.Listeners.GetAllDisplayDataErrorListener;
@@ -51,6 +53,7 @@ public class HttpRequestSender {
     private static final String UPDATE_REGID_PATH = "regid/updateregid";
     private static final String ALL_DISPLAY_DATA_PATH = "displaydata/getdata";
     private static final String ADD_NEW_CONVERSATION_DATA_PATH = "conversations/addconversation";
+    private static final String ADD_COMMENT_PATH = "comments/addcomment";
     private RequestQueue queue;
     private static HttpRequestSender instance;
 
@@ -128,6 +131,28 @@ public class HttpRequestSender {
                     .queryParam("recipientIds", recipientIds)
                     .queryParam("content", content);
             JsonObjectRequest addNewConversationRequest = new JsonObjectRequest (Request.Method.POST, urlBuilder.toUriString(), null, new AddNewConversationListener(ctx), new AddNewConversationErrorListener(ctx)){
+                @Override
+                public Map<String, String> getHeaders() throws AuthFailureError {
+                    Map<String, String>  params = new HashMap<>();
+                    params.put("Content-Type", "application/json");
+                    params.put("Accept", "application/json");
+                    return params;
+                }
+            };
+            queue.add(addNewConversationRequest);
+        } catch (Exception e) {
+            Toast.makeText(ctx.getApplicationContext(), "Error sending add new conversation request", Toast.LENGTH_LONG).show();
+        }
+    }
+
+    public void addNewComment(int usrId, int convId,Context ctx,
+                                   String content) {
+        try {
+            UriComponentsBuilder urlBuilder = UriComponentsBuilder.fromUriString(WAYT_SERVER + ADD_COMMENT_PATH)
+                    .queryParam("convId", convId)
+                    .queryParam("userId", usrId)
+                    .queryParam("content", content);
+            JsonObjectRequest addNewConversationRequest = new JsonObjectRequest (Request.Method.POST, urlBuilder.toUriString(), null, new AddNewCommentListener(ctx), new AddNewCommentErrorListener(ctx)){
                 @Override
                 public Map<String, String> getHeaders() throws AuthFailureError {
                     Map<String, String>  params = new HashMap<>();

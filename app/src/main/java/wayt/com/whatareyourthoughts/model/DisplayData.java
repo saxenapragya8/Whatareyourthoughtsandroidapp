@@ -10,11 +10,20 @@ import java.util.List;
 
 public class DisplayData implements Serializable{
 
+    private Integer convId;
     private String subject;
     private String inspiration;
     private List<String> participantUsers;
     private CommentData lastConversation;
     private List<CommentData> allComments;
+
+    public Integer getConvId() {
+        return convId;
+    }
+
+    public void setConvId(Integer convId) {
+        this.convId = convId;
+    }
 
     public List<CommentData> getAllComments() {
         return allComments;

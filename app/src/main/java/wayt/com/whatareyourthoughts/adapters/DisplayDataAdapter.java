@@ -43,7 +43,7 @@ public class DisplayDataAdapter extends BaseAdapter{
 
     @Override
     public int getCount() {
-        return displayData.size();
+        return displayData.size() ;
     }
 
     @Override
