@@ -6,9 +6,11 @@ import java.util.List;
 
 /**
  * Created by Pragya on 1/16/2017.
+ * space added by Pranav!
  */
 
 public class DisplayData implements Serializable{
+
 
     private Integer convId;
     private String subject;
