@@ -1,35 +1,98 @@
-    <TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:orientation="horizontal"
+    android:descendantFocusability="blocksDescendants"
+    android:paddingTop="16dp"
+    android:paddingBottom="12dp"
+    android:paddingEnd="16dp"
+    android:paddingStart="16dp"
+    android:layout_height="wrap_content"
+    android:background="@android:color/white">
+
+    <LinearLayout
+        android:id="@+id/checkBox"
+        android:focusable="false"
+        android:descendantFocusability="blocksDescendants"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="2dp">
+
+        <ImageButton
+            android:id="@+id/unread_button"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@mipmap/unread" />
+        <!--TODO switch image background with "@mipmap/read"-->
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/subject_date"
         android:layout_width="match_parent"
-        android:layout_height="90dp"
-        android:orientation="horizontal"
-        android:descendantFocusability="blocksDescendants" >
-        <TableRow android:descendantFocusability="blocksDescendants" android:layout_width="match_parent" >
-            <CheckBox
-                android:id="@+id/checkBox"
-                android:focusable="false"
-                android:descendantFocusability="blocksDescendants" />
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginStart="48dp">
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end"
+            android:layout_marginBottom="-21dp">
+
+            <TextView
+                android:id="@+id/modifiedLastDate"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/colorGrey"
+                android:lines="1"
+                android:gravity="end" />
+            <!-- TODO change date format: see github web code -->
+
+        </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginBottom="1dp">
 
             <TextView
                 android:id="@+id/conversationName"
-                android:textStyle="bold" />
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight=".70"
+                android:textStyle="bold"
+                android:textSize="16sp"
+                android:lines="1"
+                android:ellipsize="end" />
 
             <TextView
-                android:id="@+id/modifiedLastDate" />
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight=".30" />
 
-        </TableRow>
-        <TableRow android:descendantFocusability="blocksDescendants">
-            <TextView
-                android:id="@+id/userNames"
-                android:layout_weight="1"
-                android:layout_width="fill_parent" />
-        </TableRow>
-        <TableRow android:descendantFocusability="blocksDescendants">
-            <TextView
-                android:id="@+id/content"
-                android:layout_weight="1"
-                android:lines="2"
-                android:layout_width="fill_parent" />
-        </TableRow>
-    </TableLayout>
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/userNames"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:lines="1"
+            android:layout_marginBottom="1dp" />
+        <!-- TODO only first name in comma separated list -->
+
+        <TextView
+            android:id="@+id/content"
+            android:lines="2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/colorGrey" />
+        <!-- TODO remove line break tags from content -->
+
+    </LinearLayout>
+
+</RelativeLayout>
 
 

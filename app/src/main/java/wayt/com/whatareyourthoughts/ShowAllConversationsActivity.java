@@ -6,12 +6,12 @@ import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Display;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.Toolbar;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -37,6 +37,10 @@ public class ShowAllConversationsActivity extends ListActivity{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_show_all_conversations);
+
+//        Toolbar myToolbar = (Toolbar) findViewById(R.id.toolbar);
+//        myToolbar.setTitle(R.string.title_conversations);
+
         Intent intent = getIntent();
 
         String conversationsData = intent.getStringExtra("ALL_CONVERSATIONS_DATA");

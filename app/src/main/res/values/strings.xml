@@ -15,7 +15,7 @@
     <string name="permission_rationale">"Contacts permissions are needed for providing email
         completions."
     </string>
-    <string name="title_activity_show_all_conversations">ShowAllConversationsActivity</string>
+    <string name="title_conversations">Conversations</string>
     <string name="large_text">
         "Material is the metaphor.\n\n"
 

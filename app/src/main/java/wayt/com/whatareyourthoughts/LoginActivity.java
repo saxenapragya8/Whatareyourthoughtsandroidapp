@@ -69,6 +69,13 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
+//        // TODO refactor
+//        if (getUserId() != 0) {
+//            HttpRequestSender.getInstance(this).getUserConversationsData(getUserId(), this);
+//            Intent errorIntent = new Intent(this, ShowAllConversationsActivity.class);
+//            startActivity(errorIntent);
+//        };
+
         checkGooglePlayServicesAvailability();
         // Set up the login form.
         mEmailView = (AutoCompleteTextView) findViewById(R.id.email);
@@ -99,6 +106,12 @@ public class LoginActivity extends AppCompatActivity {
 
         mLoginFormView = findViewById(R.id.login_form);
         mProgressView = findViewById(R.id.login_progress);
+    }
+
+    private Integer getUserId(){
+
+        SharedPreferences sharedPref = this.getSharedPreferences(this.getString(R.string.user_id_field), Context.MODE_PRIVATE);
+        return sharedPref.getInt(this.getString(R.string.user_id_field), 0);
     }
 
     @Override
