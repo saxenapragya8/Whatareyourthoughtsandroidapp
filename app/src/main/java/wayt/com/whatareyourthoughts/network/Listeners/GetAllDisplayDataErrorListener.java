@@ -29,6 +29,7 @@ public class GetAllDisplayDataErrorListener implements Response.ErrorListener {
         Log.d("displayDataRespError", "Error getting all conversations display data" +  error.getMessage());
         Toast.makeText(ctx, "Encountered error while getting all conversations display data", Toast.LENGTH_LONG).show();
         Intent loginActivty = new Intent(ctx, LoginActivity.class);
+        loginActivty.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         ctx.startActivity(loginActivty);
     }
 }
