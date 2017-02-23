@@ -49,7 +49,7 @@ import javax.net.ssl.HttpsURLConnection;
 public class HttpRequestSender {
 
     private static final String WAYT_SERVER = "https://evil-pumpkin-78760.herokuapp.com/rest/";
-    private static final String USER_AUTH_PATH = "user/isuser";
+    private static final String USER_AUTH_PATH = "user/addNewUser";
     private static final String UPDATE_REGID_PATH = "regid/updateregid";
     private static final String ALL_DISPLAY_DATA_PATH = "displaydata/getdata";
     private static final String ADD_NEW_CONVERSATION_DATA_PATH = "conversations/addconversation";
@@ -70,11 +70,11 @@ public class HttpRequestSender {
         return instance;
     }
 
-    public void authenticateUser(final String email, final String passwd, final Context ctx) {
+    public void authenticateUser(final String email, final String userName, final String userId, final Context ctx) {
                 try {
                     UriComponentsBuilder urlBuilder = UriComponentsBuilder.fromUriString(WAYT_SERVER + USER_AUTH_PATH)
                             // Add query parameter
-                            .queryParam("username", email).queryParam("passwd", passwd);
+                            .queryParam("username", userName).queryParam("email", email).queryParam("userId",userId);
                     JsonObjectRequest usrAuthReq = new JsonObjectRequest (Request.Method.GET, urlBuilder.toUriString(), null, new UserAuthListener(ctx), new LogErrorListener(ctx));
 // Add the request to the RequestQueue.
                     queue.add(usrAuthReq);
