@@ -27,6 +27,7 @@ public class GetAllDisplayDataListener implements Response.Listener<JSONObject> 
         Log.d("displayDataResponse", "Received all conversation data response response" +  response.toString());
         Intent allConvsIntent = new Intent(ctx, ShowAllConversationsActivity.class);
         allConvsIntent.putExtra("ALL_CONVERSATIONS_DATA", response.toString());
+        allConvsIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         ctx.startActivity(allConvsIntent);
     }
 }
