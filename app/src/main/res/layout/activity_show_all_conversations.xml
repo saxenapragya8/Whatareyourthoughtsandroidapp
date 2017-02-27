@@ -1,48 +1,90 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.v4.widget.DrawerLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/drawer_layout"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
-    tools:context="wayt.com.whatareyourthoughts.ShowAllConversationsActivity"
-    android:orientation="vertical">
+    tools:context="wayt.com.whatareyourthoughts.ShowAllConversationsActivity">
 
-    <Toolbar
-        android:id="@+id/toolbar"
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
-        android:background="?attr/colorPrimary"
-        android:elevation="4dp"
-        android:title="@string/title_conversations"
-        android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
-        android:popupTheme="@style/ThemeOverlay.AppCompat.Light"
-        android:titleTextColor="@color/colorTitle"
-        android:paddingStart="20dp" />
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-        <ListView
-            android:id="@android:id/list"
+        <Toolbar
+            android:id="@+id/toolbar"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentStart="true"
-            android:divider="#FFFFFF">
-        </ListView>
-    </RelativeLayout>
+            android:layout_height="?attr/actionBarSize"
+            android:background="?attr/colorPrimary"
+            android:elevation="4dp"
+            android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
+            android:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+            android:paddingEnd="0dp"
+            android:paddingStart="0dp">
 
-    <android.support.design.widget.FloatingActionButton
-        android:id="@+id/fab"
-        android:layout_gravity="end"
-        android:onClick="onAddConvButtonClick"
-        app:srcCompat="@mipmap/ic_create_white_24dp"
-        android:layout_marginTop="-80dp"
-        android:layout_marginEnd="16dp"
-        app:elevation="24dp"
-        app:fabSize="normal"
-        android:layout_width="60dp"
-        android:layout_height="60dp" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                android:gravity="center_vertical|start">
 
-</LinearLayout>
+                <Button
+                    android:id="@+id/drawer_button"
+                    android:background="@mipmap/ic_menu_white_24dp"
+                    android:gravity="start"
+                    android:layout_height="32dp"
+                    android:layout_width="32dp"
+                    android:onClick="onDrawerButtonClick" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:title="@string/title_conversations"
+                    android:text="@string/title_conversations"
+                    android:textSize="20sp"
+                    android:textColor="@color/colorTitle"
+                    android:gravity="center_vertical"
+                    android:paddingStart="16dp" />
+
+            </LinearLayout>
+        </Toolbar>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <ListView
+                android:id="@android:id/list"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentStart="true"
+                android:divider="#FFFFFF">
+            </ListView>
+        </RelativeLayout>
+
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/fab"
+            android:layout_gravity="end"
+            android:onClick="onAddConvButtonClick"
+            app:srcCompat="@mipmap/ic_create_white_24dp"
+            android:layout_marginTop="-80dp"
+            android:layout_marginEnd="16dp"
+            app:elevation="24dp"
+            app:fabSize="normal"
+            android:layout_width="60dp"
+            android:layout_height="60dp" />
+
+    </LinearLayout>
+
+    <android.support.design.widget.NavigationView
+        android:id="@+id/navigation_view"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        app:menu="@menu/home_menu"
+        android:layout_gravity="start">
+
+    </android.support.design.widget.NavigationView>
+</android.support.v4.widget.DrawerLayout>

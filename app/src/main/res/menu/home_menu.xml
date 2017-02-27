@@ -1,12 +1,20 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <!-- "Mark Favorite", should appear as action button if possible -->
-    <!--<item-->
-        <!--android:id="@+id/open_menu"-->
-        <!--android:icon="@drawable/ic_menu_white_24dp"-->
-        <!--android:title="@string/open_menu"/>-->
+    <item
+        android:id="@+id/nav_conversations"
+        android:icon="@mipmap/ic_create_white_24dp"
+        android:title="@string/title_conversations"/>
         <!--app:showAsAction="ifRoom"-->
 
+    <item
+        android:id="@+id/nav_friends"
+        android:icon="@mipmap/ic_create_white_24dp"
+        android:title="@string/title_conversations"/>
+    <item
+        android:id="@+id/nav_profile"
+        android:icon="@mipmap/ic_create_white_24dp"
+        android:title="@string/title_conversations"/>
     <!-- Settings, should always be in the overflow -->
     <!--<item android:id="@+id/action_settings"-->
         <!--android:title="@string/action_settings"-->

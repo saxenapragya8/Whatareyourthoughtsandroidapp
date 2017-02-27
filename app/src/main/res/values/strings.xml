@@ -16,6 +16,10 @@
         completions."
     </string>
     <string name="title_conversations">Conversations</string>
+
+    <string name="open">Open</string>
+    <string name="close">Close</string>
+
     <string name="large_text">
         "Material is the metaphor.\n\n"
 
