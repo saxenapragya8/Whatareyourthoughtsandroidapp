@@ -1,39 +1,33 @@
 package wayt.com.whatareyourthoughts.network.Listeners;
 
 import android.content.Context;
-import android.content.SharedPreferences;
-import android.widget.Toast;
 
-import com.android.volley.Response;
-
-import org.json.JSONObject;
-
-import wayt.com.whatareyourthoughts.R;
-import wayt.com.whatareyourthoughts.network.HttpRequestSender;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.ValueEventListener;
 
 /**
- * Created by Pragya on 1/31/2017.
+ * Created by Pragya on 2/28/2017.
  */
 
-public class AddNewConversationListener implements Response.Listener<JSONObject> {
-    Context ctx;
-    public AddNewConversationListener(Context ctx){
+public class AddNewConversationListener implements ValueEventListener {
+
+    private DatabaseReference dbRef;
+    private Context ctx;
+
+    public AddNewConversationListener(DatabaseReference dbRef, Context ctx){
+        this.dbRef = dbRef;
         this.ctx = ctx;
     }
 
     @Override
-    public void onResponse(JSONObject response) {
-        Toast.makeText(ctx, "Add new conversation response" + response.toString(), Toast.LENGTH_LONG).show();
-        Integer userId = getUserId();
-        getAllUserDisplayData(userId, ctx);
+    public void onDataChange(DataSnapshot dataSnapshot) {
+
     }
 
-    private void getAllUserDisplayData(Integer userId, Context ctx) {
-        HttpRequestSender.getInstance(ctx).getUserConversationsData(userId, ctx);
-    }
+    @Override
+    public void onCancelled(DatabaseError databaseError) {
 
-    private Integer getUserId(){
-        SharedPreferences sharedPref = ctx.getSharedPreferences(ctx.getString(R.string.user_id_field), Context.MODE_PRIVATE);
-        return sharedPref.getInt(ctx.getString(R.string.user_id_field), 0);
     }
 }

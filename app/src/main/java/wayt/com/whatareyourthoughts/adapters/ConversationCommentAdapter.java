@@ -11,12 +11,14 @@ import android.widget.TextView;
 import org.w3c.dom.Comment;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
+import java.util.Map;
 
 import wayt.com.whatareyourthoughts.R;
-import wayt.com.whatareyourthoughts.model.CommentData;
-import wayt.com.whatareyourthoughts.model.DisplayData;
+import wayt.com.whatareyourthoughts.network.model.CommentData;
 
 /**
  * Created by Pragya on 1/22/2017.
@@ -24,16 +26,16 @@ import wayt.com.whatareyourthoughts.model.DisplayData;
 
 public class ConversationCommentAdapter extends BaseAdapter{
     Context ctx;
-    private List<CommentData> commentsData;
-    private String subject;
-    private String inspiration;
-    private List<String> participantList;
+    private List<CommentData> commentsData = new ArrayList<CommentData>();
+//    private String subject;
+//    private String inspiration;
+//    private List<String> participantList;
 
-    public ConversationCommentAdapter(DisplayData data, Context ctx){
-        this.commentsData = data.getAllComments();
-        this.subject = data.getSubject();
-        this.inspiration = data.getInspiration();
-        this.participantList = data.getParticipantUsers();
+    public ConversationCommentAdapter(Map<String, CommentData> comments, Context ctx){
+        commentsData = new ArrayList<>(comments.values());
+//        this.subject = subject;
+//        this.inspiration = inspiration;
+//        this.participantList = data.getParticipantUsers();
         this.ctx = ctx;
     }
 
@@ -61,17 +63,16 @@ public class ConversationCommentAdapter extends BaseAdapter{
                 convertView = inflater.inflate(R.layout.conversation_comment_row, parent, false);
             }
 
-            SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd", Locale.US);
             CommentData item = commentsData.get(position);
 
             TextView participantUser = (TextView) convertView.findViewById(R.id.participantUser);
-            participantUser.setText(item.getUserName());
+//            participantUser.setText(item.getUserName());
 
             TextView creationDate = (TextView) convertView.findViewById(R.id.creationDate);
-            creationDate.setText(sdf.format(item.getModifiedDate()));
+            creationDate.setText(item.getCreationDate());
 
             TextView content = (TextView) convertView.findViewById(R.id.commentContent);
-            content.setText(Html.fromHtml(item.getContent()));
+            content.setText(Html.fromHtml(item.getCommentContent()));
 
             return convertView;
         } else {

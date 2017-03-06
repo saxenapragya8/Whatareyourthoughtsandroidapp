@@ -1,4 +1,4 @@
-package wayt.com.whatareyourthoughts.network.Listeners;
+package wayt.com.whatareyourthoughts.network.Listeners.HerokuServiceConnectListeners;
 
 import android.content.Context;
 import android.content.Intent;

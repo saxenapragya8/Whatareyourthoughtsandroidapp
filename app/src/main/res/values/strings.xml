@@ -11,6 +11,7 @@
     <string name="error_incorrect_password">This password is incorrect</string>
     <string name="error_field_required">This field is required</string>
     <string name="user_id_field">User Id field</string>
+    <string name="user_display_name_field">User Display Name</string>
     <string name="firebase_token">fireBaseToken</string>
     <string name="permission_rationale">"Contacts permissions are needed for providing email
         completions."

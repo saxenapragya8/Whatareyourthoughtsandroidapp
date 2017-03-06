@@ -23,9 +23,7 @@ import java.util.Locale;
 import java.util.Map;
 
 import wayt.com.whatareyourthoughts.R;
-import wayt.com.whatareyourthoughts.model.CommentData;
-import wayt.com.whatareyourthoughts.model.DisplayData;
-import wayt.com.whatareyourthoughts.responses.CommentResponse;
+import wayt.com.whatareyourthoughts.network.model.ConversationsData;
 
 /**
  * Created by Pragya on 1/16/2017.
@@ -33,10 +31,10 @@ import wayt.com.whatareyourthoughts.responses.CommentResponse;
 
 public class DisplayDataAdapter extends BaseAdapter{
 
-    List<DisplayData> displayData = new ArrayList<DisplayData>();
+    List<ConversationsData> displayData;
     Context ctx;
 
-    public DisplayDataAdapter(List<DisplayData> displayData, Context ctx){
+    public DisplayDataAdapter(List<ConversationsData> displayData, Context ctx){
         this.ctx = ctx;
         this.displayData = displayData;
     }
@@ -69,16 +67,16 @@ public class DisplayDataAdapter extends BaseAdapter{
         parent.setDescendantFocusability(ViewGroup.FOCUS_BLOCK_DESCENDANTS);
         TextView conversationName = (TextView)convertView.findViewById(R.id.conversationName);
         TextView modifiedLastDate = (TextView)convertView.findViewById(R.id.modifiedLastDate);
-        TextView userNamesList = (TextView)convertView.findViewById(R.id.userNames);
-        TextView content = (TextView)convertView.findViewById(R.id.content);
+//        TextView userNamesList = (TextView)convertView.findViewById(R.id.userNames);
+//        TextView content = (TextView)convertView.findViewById(R.id.content);
 
-        DisplayData item = displayData.get(position);
+        ConversationsData item = displayData.get(position);
 
         conversationName.setText(item.getSubject().trim());
-        String time=sdf.format(item.getLastConversation().getModifiedDate());
+        String time=sdf.format(item.getCreatedAt());
         modifiedLastDate.setText(time);
-        userNamesList.setText(item.getParticipantUsers().toString().trim());
-        content.setText(Html.fromHtml(item.getLastConversation().getContent().trim()));
+//        userNamesList.setText(item.getParticipantUsers().toString().trim());
+//        content.setText(Html.fromHtml(item.ge.getLastConversation().getContent().trim()));
         return convertView;
     }
 }

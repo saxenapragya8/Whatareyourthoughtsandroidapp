@@ -5,46 +5,28 @@ package wayt.com.whatareyourthoughts.network;
  */
 
 import android.content.Context;
-import android.content.SharedPreferences;
-import android.net.Uri;
-import android.util.Log;
 import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
-import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 
-import org.json.JSONObject;
 import org.springframework.web.util.UriComponentsBuilder;
 
-import wayt.com.whatareyourthoughts.R;
-import wayt.com.whatareyourthoughts.network.Listeners.AddNewCommentErrorListener;
-import wayt.com.whatareyourthoughts.network.Listeners.AddNewCommentListener;
-import wayt.com.whatareyourthoughts.network.Listeners.AddNewConversationErrorListener;
-import wayt.com.whatareyourthoughts.network.Listeners.AddNewConversationListener;
-import wayt.com.whatareyourthoughts.network.Listeners.GetAllDisplayDataErrorListener;
-import wayt.com.whatareyourthoughts.network.Listeners.GetAllDisplayDataListener;
-import wayt.com.whatareyourthoughts.network.Listeners.LogErrorListener;
-import wayt.com.whatareyourthoughts.network.Listeners.UpdateRegistrationIdListener;
-import wayt.com.whatareyourthoughts.network.Listeners.UserAuthListener;
-import wayt.com.whatareyourthoughts.responses.UserAuthResponse;
+import wayt.com.whatareyourthoughts.network.Listeners.HerokuServiceConnectListeners.AddNewCommentErrorListener;
+import wayt.com.whatareyourthoughts.network.Listeners.HerokuServiceConnectListeners.AddNewCommentListener;
+import wayt.com.whatareyourthoughts.network.Listeners.HerokuServiceConnectListeners.AddNewConversationErrorListener;
+import wayt.com.whatareyourthoughts.network.Listeners.HerokuServiceConnectListeners.AddNewConversationListener;
+import wayt.com.whatareyourthoughts.network.Listeners.HerokuServiceConnectListeners.GetAllDisplayDataErrorListener;
+import wayt.com.whatareyourthoughts.network.Listeners.HerokuServiceConnectListeners.GetAllDisplayDataListener;
+import wayt.com.whatareyourthoughts.network.Listeners.HerokuServiceConnectListeners.LogErrorListener;
+import wayt.com.whatareyourthoughts.network.Listeners.HerokuServiceConnectListeners.UpdateRegistrationIdListener;
+import wayt.com.whatareyourthoughts.network.Listeners.HerokuServiceConnectListeners.UserAuthListener;
 
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.InputStreamReader;
-import java.io.OutputStream;
-import java.io.OutputStreamWriter;
-import java.net.URL;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
-
-import javax.net.ssl.HttpsURLConnection;
 
 public class HttpRequestSender {
 

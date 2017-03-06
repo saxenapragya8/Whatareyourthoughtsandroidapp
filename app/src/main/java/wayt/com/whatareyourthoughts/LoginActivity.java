@@ -64,6 +64,8 @@ import wayt.com.whatareyourthoughts.network.HttpRequestSender;
 import wayt.com.whatareyourthoughts.network.Listeners.FireauthStateChange;
 import wayt.com.whatareyourthoughts.network.Listeners.GoogleSigninFailedListener;
 import wayt.com.whatareyourthoughts.network.NetworkAvailabilityChecker;
+import wayt.com.whatareyourthoughts.network.RealtimeDbWriter;
+import wayt.com.whatareyourthoughts.network.model.UserData;
 import wayt.com.whatareyourthoughts.responses.UserAuthResponse;
 
 import static android.Manifest.permission.READ_CONTACTS;
@@ -101,43 +103,16 @@ public class LoginActivity extends AppCompatActivity {
                 .build();
 
         mAuth = FirebaseAuth.getInstance();
-//        // TODO refactor
-//        if (getUserId() != 0) {
-//            HttpRequestSender.getInstance(this).getUserConversationsData(getUserId(), this);
-//            Intent errorIntent = new Intent(this, ShowAllConversationsActivity.class);
-//            startActivity(errorIntent);
-//        };
-
         checkGooglePlayServicesAvailability();
-//        // Set up the login form.
-//        mEmailView = (AutoCompleteTextView) findViewById(R.id.email);
-//        mPasswordView = (EditText) findViewById(R.id.password);
-
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(policy);
         Button mEmailSignInButton = (Button) findViewById(R.id.email_sign_in_button);
-//        this.ctx = getApplicationContext();
-//        requestSender = HttpRequestSender.getInstance(ctx);
         mEmailSignInButton.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
-//                // Store values at the time of the login attempt.
-//                String email = mEmailView.getText().toString();
-//                String password = mPasswordView.getText().toString();
-//
-//                try {
-//                    new LoginTask(email, password).execute().get();
-//                } catch (InterruptedException e) {
-//                    e.printStackTrace();
-//                } catch (ExecutionException e) {
-//                    e.printStackTrace();
-//                }
             signIn();
             }
         });
-
-//        mLoginFormView = findViewById(R.id.login_form);
-//        mProgressView = findViewById(R.id.login_progress);
     }
 
     @Override
@@ -151,8 +126,8 @@ public class LoginActivity extends AppCompatActivity {
                 // Google Sign In was successful, authenticate with Firebase
                 GoogleSignInAccount account = result.getSignInAccount();
                 firebaseAuthWithGoogle(account);
-                HttpRequestSender.getInstance(this).authenticateUser(account.getEmail(), account.getDisplayName(), account.getId(), this);
-                //TODO Add sending user name and email to users table
+                RealtimeDbWriter.getInstance(LoginActivity.this).writeUserDataToFirebase(new UserData(account.getId(), account.getEmail(), account.getDisplayName()));
+
             } else {
                 Toast.makeText(ctx, "Google Sign in failed", Toast.LENGTH_LONG).show();
             }
@@ -162,7 +137,7 @@ public class LoginActivity extends AppCompatActivity {
     private void firebaseAuthWithGoogle(GoogleSignInAccount acct) {
         Log.d(this.getClass().toString(), "firebaseAuthWithGoogle:" + acct.getId());
 
-        AuthCredential credential = GoogleAuthProvider.getCredential(acct.getIdToken(), null);
+        final AuthCredential credential = GoogleAuthProvider.getCredential(acct.getIdToken(), null);
         mAuth.signInWithCredential(credential)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
@@ -175,6 +150,10 @@ public class LoginActivity extends AppCompatActivity {
                         if (!task.isSuccessful()) {
                             Log.w(this.getClass().toString(), "signInWithCredential", task.getException());
                             Toast.makeText(LoginActivity.this, "Authentication failed.", Toast.LENGTH_SHORT).show();
+                        } else {
+                            RealtimeDbWriter.getInstance(LoginActivity.this).addDataChangeListeners();
+                            Intent intent = new Intent(LoginActivity.this, ShowAllConversationsActivity.class);
+                            LoginActivity.this.startActivity(intent);
                         }
                     }
                 });
@@ -185,7 +164,7 @@ public class LoginActivity extends AppCompatActivity {
         startActivityForResult(signInIntent, RC_SIGN_IN);
     }
 
-    private void signOut() {
+    public void signOut(View view) {
         mAuth.signOut();
 
         // Google sign out
@@ -198,12 +177,6 @@ public class LoginActivity extends AppCompatActivity {
                 });
     }
 
-    private Integer getUserId(){
-
-        SharedPreferences sharedPref = this.getSharedPreferences(this.getString(R.string.user_id_field), Context.MODE_PRIVATE);
-        return sharedPref.getInt(this.getString(R.string.user_id_field), 0);
-    }
-
     @Override
     protected void onResume() {
         super.onResume();
@@ -214,7 +187,7 @@ public class LoginActivity extends AppCompatActivity {
     @Override
     public void onStart() {
         super.onStart();
-        mAuthListener = new FireauthStateChange();
+        mAuthListener = new FireauthStateChange(this);
         mAuth.addAuthStateListener(mAuthListener);
     }
 

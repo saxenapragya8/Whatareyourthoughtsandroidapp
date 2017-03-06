@@ -13,14 +13,26 @@ import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import java.util.Map;
+
 import wayt.com.whatareyourthoughts.adapters.ConversationCommentAdapter;
-import wayt.com.whatareyourthoughts.adapters.DisplayDataAdapter;
-import wayt.com.whatareyourthoughts.model.DisplayData;
 import wayt.com.whatareyourthoughts.network.HttpRequestSender;
+import wayt.com.whatareyourthoughts.network.RealtimeDbWriter;
+import wayt.com.whatareyourthoughts.network.model.CommentData;
+import wayt.com.whatareyourthoughts.network.model.ConversationsData;
 
 public class ShowConversationCommentsActivity extends AppCompatActivity {
 
-    DisplayData data;
+    static ConversationsData data;
+    static ConversationCommentAdapter adapter;
+
+    public static void addComment(CommentData commentData){
+        if(data != null && adapter != null) {
+            Map<String, CommentData> commentsData = data.getComments();
+            commentsData.put(commentData.getCommentId(), commentData);
+            adapter.notifyDataSetChanged();
+        }
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,12 +50,12 @@ public class ShowConversationCommentsActivity extends AppCompatActivity {
             }
         });
 
-        data = (DisplayData) getIntent().getSerializableExtra("commentData");
-        TextView participantList = (TextView)findViewById(R.id.participants);
-        participantList.setText(data.getParticipantUsers().toString());
-
-        TextView date = (TextView)findViewById(R.id.date);
-        date.setText(data.getAllComments().get(0).getModifiedDate().toString());
+        data = (ConversationsData) getIntent().getSerializableExtra("commentData");
+//        TextView participantList = (TextView)findViewById(R.id.participants);
+//        participantList.setText(data.getParticipantUsers().toString());
+//
+//        TextView date = (TextView)findViewById(R.id.date);
+//        date.setText(data.getAllComments().get(0).getModifiedDate().toString());
 
         TextView subject = (TextView)findViewById(R.id.subject);
         subject.setText(data.getSubject());
@@ -51,7 +63,7 @@ public class ShowConversationCommentsActivity extends AppCompatActivity {
         TextView inspiration = (TextView)findViewById(R.id.inspiration);
         inspiration.setText(data.getInspiration());
 
-        ConversationCommentAdapter adapter = new ConversationCommentAdapter(data, this);
+        adapter = new ConversationCommentAdapter(data.getComments(), this);
         ListView displayComments = (ListView)findViewById(R.id.displayCommentsListView);
         displayComments.setAdapter(adapter);
     }
@@ -59,9 +71,11 @@ public class ShowConversationCommentsActivity extends AppCompatActivity {
     public void onCommentAddClicked(View addConvButton) {
         EditText comment = (EditText)findViewById(R.id.newComment);
         String newCommentText = comment.getText().toString();
-        Integer convId = data.getConvId();
-        Integer userId = getUserId();
-        HttpRequestSender.getInstance(this).addNewComment(userId, convId, this, newCommentText);
+        String convId = data.getConvId();
+        RealtimeDbWriter.getInstance(this).addNewComment(convId, newCommentText);
+//        Integer convId = data.
+//        Integer userId = getUserId();
+//        HttpRequestSender.getInstance(this).addNewComment(userId, convId, this, newCommentText);
     }
 
     private Integer getUserId(){

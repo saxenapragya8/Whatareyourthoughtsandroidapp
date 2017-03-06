@@ -10,7 +10,7 @@
     <item
         android:id="@+id/nav_friends"
         android:icon="@mipmap/ic_create_white_24dp"
-        android:title="@string/title_conversations"/>
+        android:title="Invite friend"/>
     <item
         android:id="@+id/nav_profile"
         android:icon="@mipmap/ic_create_white_24dp"
