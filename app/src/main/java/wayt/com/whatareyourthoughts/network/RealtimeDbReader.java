@@ -11,6 +11,7 @@ import java.util.Set;
 
 import wayt.com.whatareyourthoughts.network.Listeners.CommentNodeDataChangeListener;
 import wayt.com.whatareyourthoughts.network.Listeners.ConversationDataNodeChangeListener;
+import wayt.com.whatareyourthoughts.network.Listeners.NewFriendAddEmailFoundListener;
 import wayt.com.whatareyourthoughts.network.model.ConversationsData;
 
 /**
@@ -32,21 +33,8 @@ public class RealtimeDbReader {
         return instance;
     }
 
-    public void subscribeToUserConversationDataNodes(Set<String> conversationIds){
-        for(String convId: conversationIds){
-            DatabaseReference ref = database.child(RealtimeDbConstants.APP_ID).child(RealtimeDbConstants.CONVERSATIONS).child(convId);
-//            ref.addChildEventListener(new ConversationDataNodeChangeListener(ctx));
-        }
-
-
-//        ref.orderByChild(RealtimeDbConstants.CREATED_AT).equalTo(conversationIds)
-    }
-
-    public void subscribeToCommentDataNodes(Set<String> commentIds){
-        List<ConversationsData> data = new ArrayList<ConversationsData>();
-        for(String commentId: commentIds){
-            database.child(RealtimeDbConstants.APP_ID).child(RealtimeDbConstants.COMMENTS)
-                    .child(commentId).addListenerForSingleValueEvent (new CommentNodeDataChangeListener(ctx));
-        }
+    public void getEmailUserId(String email){
+        database.child(RealtimeDbConstants.USER_NODE).orderByChild(RealtimeDbConstants.EMAIL).equalTo(email)
+                .addListenerForSingleValueEvent(new NewFriendAddEmailFoundListener(ctx));
     }
 }

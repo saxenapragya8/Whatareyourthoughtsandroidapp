@@ -11,6 +11,7 @@ public class RealtimeDbConstants {
     public static final String EMAIL = "Email";
     public static final String USER_NAME = "UserName";
     public static final String CONVERSATIONS = "Conversations";
+    public static final String FRIENDS = "Friends";
     public static final String COMMENTS = "Comments";
     public static final String SUBJECT = "Subject";
     public static final String CONTENT = "Content";

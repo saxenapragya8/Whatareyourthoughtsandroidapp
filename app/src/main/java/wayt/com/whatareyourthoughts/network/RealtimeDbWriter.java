@@ -4,18 +4,23 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.widget.Toast;
 
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ServerValue;
+import com.google.firebase.database.ValueEventListener;
 
 import java.security.Timestamp;
 import java.util.HashMap;
 import java.util.Map;
 
 import wayt.com.whatareyourthoughts.R;
+import wayt.com.whatareyourthoughts.network.Listeners.FriendNodeDataListener;
 import wayt.com.whatareyourthoughts.network.model.CommentData;
 import wayt.com.whatareyourthoughts.network.Listeners.UserConversationsDataChangeListener;
 import wayt.com.whatareyourthoughts.network.model.ConversationsData;
+import wayt.com.whatareyourthoughts.network.model.Friends;
 import wayt.com.whatareyourthoughts.network.model.UserData;
 
 /**
@@ -44,6 +49,9 @@ public class RealtimeDbWriter {
     public void addDataChangeListeners(){
         DatabaseReference userConvNodeRef = database.child(RealtimeDbConstants.USER_NODE).child(getUserId()).child(RealtimeDbConstants.APP_ID).child(RealtimeDbConstants.CONVERSATIONS);
         userConvNodeRef.orderByKey().addChildEventListener(new UserConversationsDataChangeListener(ctx));
+
+        DatabaseReference userFriendList = database.child(RealtimeDbConstants.USER_NODE).child(getUserId()).child(RealtimeDbConstants.APP_ID).child(RealtimeDbConstants.FRIENDS);
+        userFriendList.addValueEventListener(new FriendNodeDataListener());
     }
 
     public void writeUserDataToFirebase(UserData data){
@@ -74,8 +82,7 @@ public class RealtimeDbWriter {
         return sharedPref.getString(ctx.getString(R.string.user_display_name_field), "");
     }
 
-    public void writeNewConversationToDb(String subject, String inspiration,
-                                         String emails, String content) {
+    public void writeNewConversationToDb(String subject, String inspiration, String emails, String content) {
         DatabaseReference conversationsNode = database.child(RealtimeDbConstants.APP_ID).child(RealtimeDbConstants.CONVERSATIONS);
 
         String conversationKey = conversationsNode.push().getKey();
@@ -86,8 +93,6 @@ public class RealtimeDbWriter {
         commentData.setCommentContent(content);
         commentData.setCommentCreatedByID(getUserId());
         commentData.setCommentCreatedByName(getUserDisplayName());
-//        Map<String, Object> commentMap = commentData.toMap();
-//        commentNode.updateChildren(commentMap);
 
         ConversationsData conversationData = new ConversationsData();
         conversationData.setSubject(subject);
@@ -113,5 +118,15 @@ public class RealtimeDbWriter {
         commentData.setCommentCreatedByName(getUserDisplayName());
         DatabaseReference commentNode = database.child(RealtimeDbConstants.APP_ID).child(RealtimeDbConstants.CONVERSATIONS).child(convId).child(RealtimeDbConstants.COMMENTS);
         commentNode.push().setValue(commentData);
+    }
+
+    public void addFriend(String friendUserId, String friendUserName){
+        DatabaseReference userFriendList = database.child(RealtimeDbConstants.USER_NODE).child(getUserId()).child(RealtimeDbConstants.APP_ID).child(RealtimeDbConstants.FRIENDS);
+        userFriendList.child(friendUserId).setValue(friendUserName);
+    }
+
+    public void addUserToFriendNode(String friendUserId){
+        DatabaseReference friendsFriendList = database.child(RealtimeDbConstants.USER_NODE).child(friendUserId).child(RealtimeDbConstants.APP_ID).child(RealtimeDbConstants.FRIENDS);
+        friendsFriendList.child(getUserId()).setValue(getUserDisplayName());
     }
 }

@@ -27,10 +27,11 @@ public class ShowConversationCommentsActivity extends AppCompatActivity {
     static ConversationCommentAdapter adapter;
 
     public static void addComment(CommentData commentData){
-        if(data != null && adapter != null) {
+        if(commentData != null && data != null) {
             Map<String, CommentData> commentsData = data.getComments();
             commentsData.put(commentData.getCommentId(), commentData);
-            adapter.notifyDataSetChanged();
+            if(adapter != null)
+                adapter.notifyDataSetChanged();
         }
     }
 

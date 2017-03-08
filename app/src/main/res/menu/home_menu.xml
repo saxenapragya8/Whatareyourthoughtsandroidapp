@@ -2,17 +2,17 @@
 
     <!-- "Mark Favorite", should appear as action button if possible -->
     <item
-        android:id="@+id/nav_conversations"
+        android:id="@+id/navConversations"
         android:icon="@mipmap/ic_create_white_24dp"
         android:title="@string/title_conversations"/>
         <!--app:showAsAction="ifRoom"-->
 
     <item
-        android:id="@+id/nav_friends"
+        android:id="@+id/navFriends"
         android:icon="@mipmap/ic_create_white_24dp"
         android:title="Invite friend"/>
     <item
-        android:id="@+id/nav_profile"
+        android:id="@+id/navProfile"
         android:icon="@mipmap/ic_create_white_24dp"
         android:title="@string/title_conversations"/>
     <!-- Settings, should always be in the overflow -->

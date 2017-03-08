@@ -1,41 +1,22 @@
 package wayt.com.whatareyourthoughts;
 
 import android.app.ListActivity;
-import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
+import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
-import android.support.design.widget.Snackbar;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
-import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
-import android.view.Display;
 import android.view.Gravity;
+import android.view.MenuItem;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.ListView;
-import android.widget.Toolbar;
 
-import com.firebase.ui.database.FirebaseListAdapter;
 import com.google.firebase.database.DatabaseReference;
 
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Date;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
-import wayt.com.whatareyourthoughts.adapters.ConversationFirebaseListAdapter;
 import wayt.com.whatareyourthoughts.adapters.DisplayDataAdapter;
 import wayt.com.whatareyourthoughts.network.RealtimeDbConstants;
 import wayt.com.whatareyourthoughts.network.RealtimeDbWriter;
@@ -48,8 +29,11 @@ public class ShowAllConversationsActivity extends ListActivity{
     private static List<ConversationsData> displayData = new ArrayList<ConversationsData>();
 
     public static void addToAdapter(ConversationsData data){
-        displayData.add(data);
-        adapter.notifyDataSetChanged();
+        if(data != null) {
+            displayData.add(data);
+            if(adapter != null)
+                adapter.notifyDataSetChanged();
+        }
     }
 
     @Override
@@ -73,6 +57,21 @@ public class ShowAllConversationsActivity extends ListActivity{
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.navigation_view);
         navigationView.getMenu().getItem(0).setChecked(true);
+        navigationView.setNavigationItemSelectedListener(new  NavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
+                menuItem.setChecked(true);
+
+                switch (menuItem.getItemId()) {
+                    case R.id.navFriends: //do what you want to do;
+                        Intent showFriendActivity = new Intent(ShowAllConversationsActivity.this, ShowFriendsActivity.class);
+                        startActivity(showFriendActivity);
+                        break;
+                    case R.id.navProfile: // etc,
+                }
+                return true;
+            }
+        });
     }
 
     public void onAddConvButtonClick(View addConvButton) {
