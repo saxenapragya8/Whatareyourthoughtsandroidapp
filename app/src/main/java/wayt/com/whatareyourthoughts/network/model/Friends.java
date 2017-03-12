@@ -10,6 +10,7 @@ import com.google.firebase.database.IgnoreExtraProperties;
 public class Friends {
     private String friendName;
     private String friendId;
+    private String status;
 
     public String getFriendName() {
         return friendName;
@@ -25,5 +26,13 @@ public class Friends {
 
     public void setFriendId(String friendId) {
         this.friendId = friendId;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 }

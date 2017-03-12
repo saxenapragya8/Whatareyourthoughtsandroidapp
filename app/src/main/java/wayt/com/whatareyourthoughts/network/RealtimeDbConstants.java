@@ -19,4 +19,8 @@ public class RealtimeDbConstants {
     public static final String CREATED_AT = "CreatedAt";
     public static final String CREATED_BY = "CreatedByDisplayName";
     public static final String CREATED_BY_ID = "CreatedByID";
+    public static final String FRIEND_STATUS = "Status";
+    public static final String INVITED = "Awaiting Accept";
+    public static final String ACCEPT_INVITE = "Accept";
+    public static final String FRIEND_NAME = "Name";
 }

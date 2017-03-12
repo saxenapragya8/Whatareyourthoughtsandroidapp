@@ -55,6 +55,8 @@ public class DisplayFriendListAdapter  extends BaseAdapter {
         TextView friendName = (TextView)convertView.findViewById(R.id.friendName);
         Friends item = friendsList.get(position);
         friendName.setText(item.getFriendName());
+        TextView friendStatus = (TextView)convertView.findViewById(R.id.friendStatus);
+        friendStatus.setText(item.getStatus());
         return convertView;
     }
 }

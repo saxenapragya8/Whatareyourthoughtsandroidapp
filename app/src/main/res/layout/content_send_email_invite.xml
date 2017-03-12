@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context="wayt.com.whatareyourthoughts.SendEmailInviteActivity"
+    tools:showIn="@layout/activity_send_email_invite">
+
+    <TextView
+        android:id="@+id/show_open_email_activity"
+        android:text="@string/email_activity_message"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <Button
+        android:id="@+id/send_email_button"
+        style="?android:textAppearanceSmall"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="Send Email Invite"
+        android:onClick="onSendInvite"
+        android:textStyle="bold" />
+
+</android.support.constraint.ConstraintLayout>

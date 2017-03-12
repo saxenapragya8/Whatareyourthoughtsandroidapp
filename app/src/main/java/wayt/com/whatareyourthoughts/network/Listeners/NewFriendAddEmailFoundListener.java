@@ -10,6 +10,7 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.Iterator;
 
+import wayt.com.whatareyourthoughts.SendEmailInviteActivity;
 import wayt.com.whatareyourthoughts.ShowFriendsActivity;
 import wayt.com.whatareyourthoughts.network.RealtimeDbConstants;
 import wayt.com.whatareyourthoughts.network.RealtimeDbWriter;
@@ -27,7 +28,6 @@ public class NewFriendAddEmailFoundListener implements ValueEventListener{
 
     @Override
     public void onDataChange(DataSnapshot dataSnapshot) {
-        DatabaseReference friendFriendsNode = dataSnapshot.getRef().getParent().child(RealtimeDbConstants.FRIENDS);
 
         Iterator friendData = dataSnapshot.getChildren().iterator();
         if(friendData.hasNext()){
@@ -41,9 +41,10 @@ public class NewFriendAddEmailFoundListener implements ValueEventListener{
             Intent intent = new Intent(ctx, ShowFriendsActivity.class);
             ctx.startActivity(intent);
         } else {
-            //dint find friend in db
+            //no friend already found in the user db
+            Intent intent = new Intent(ctx, SendEmailInviteActivity.class);
+            ctx.startActivity(intent);
         }
-
     }
 
     @Override

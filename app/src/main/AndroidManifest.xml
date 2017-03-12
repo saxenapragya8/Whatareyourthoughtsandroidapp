@@ -61,7 +61,11 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".AddNewConversationActivity" />
         <activity android:name=".ShowFriendsActivity" />
-        <activity android:name=".AddFriendActivity"></activity>
+        <activity android:name=".AddFriendActivity" />
+        <activity
+            android:name=".SendEmailInviteActivity"
+            android:label="@string/title_activity_send_email_invite"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>
