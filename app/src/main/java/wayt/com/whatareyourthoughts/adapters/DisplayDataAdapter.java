@@ -15,14 +15,18 @@ import org.json.JSONObject;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Collections;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
+import java.util.Set;
 
 import wayt.com.whatareyourthoughts.R;
+import wayt.com.whatareyourthoughts.network.model.CommentData;
 import wayt.com.whatareyourthoughts.network.model.ConversationsData;
 
 /**
@@ -67,16 +71,32 @@ public class DisplayDataAdapter extends BaseAdapter{
         parent.setDescendantFocusability(ViewGroup.FOCUS_BLOCK_DESCENDANTS);
         TextView conversationName = (TextView)convertView.findViewById(R.id.conversationName);
         TextView modifiedLastDate = (TextView)convertView.findViewById(R.id.modifiedLastDate);
-//        TextView userNamesList = (TextView)convertView.findViewById(R.id.userNames);
-//        TextView content = (TextView)convertView.findViewById(R.id.content);
+        TextView userNamesList = (TextView)convertView.findViewById(R.id.userNames);
+        TextView content = (TextView)convertView.findViewById(R.id.content);
 
         ConversationsData item = displayData.get(position);
-
         conversationName.setText(item.getSubject().trim());
         String time=sdf.format(item.getCreatedAt());
         modifiedLastDate.setText(time);
-//        userNamesList.setText(item.getParticipantUsers().toString().trim());
-//        content.setText(Html.fromHtml(item.ge.getLastConversation().getContent().trim()));
+
+        String uiDisplayUserString = "";
+        if(item.getComments().size() != 0){
+            Collection<CommentData> convCommData = item.getComments().values();
+            List<CommentData> sortedCommentsByCreationTime = new ArrayList<CommentData>(convCommData);
+            Collections.sort(sortedCommentsByCreationTime);
+            CommentData lastConv = sortedCommentsByCreationTime.get(sortedCommentsByCreationTime.size() - 1);
+            content.setText(Html.fromHtml(lastConv.getCommentContent()));
+            Set<String> stringCommentedUsers = new HashSet<>();
+            for(CommentData comment : sortedCommentsByCreationTime){
+                stringCommentedUsers.add(comment.getCommentCreatedByName());
+            }
+            uiDisplayUserString = stringCommentedUsers.toString();
+            uiDisplayUserString = uiDisplayUserString.replace("[","");
+            uiDisplayUserString = uiDisplayUserString.replace("]","");
+            uiDisplayUserString = uiDisplayUserString + "(" +stringCommentedUsers.size() +  ")";
+        }
+
+        userNamesList.setText(uiDisplayUserString);
         return convertView;
     }
 }

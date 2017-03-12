@@ -91,6 +91,6 @@ public class CommentData implements Serializable, Comparable<CommentData>{
 
     @Override
     public int compareTo(@NonNull CommentData o) {
-        return 0;
+        return ((Long)commentCreatedAt.get("CommentCreatedAt")).compareTo((Long)o.getCommentCreatedAt().get("CommentCreatedAt"));
     }
 }
