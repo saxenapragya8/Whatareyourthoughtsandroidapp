@@ -19,7 +19,7 @@
         android:theme="@style/AppTheme">
         <activity
             android:name=".LoginActivity"
-            android:label="@string/app_name">
+            android:theme="@style/AppTheme.NoActionBar" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -57,7 +57,6 @@
         <activity android:name=".ShowAllConversationsActivity" />
         <activity
             android:name=".ShowConversationCommentsActivity"
-            android:label="@string/title_activity_show_conversation_comments"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".AddNewConversationActivity" />
         <activity android:name=".ShowFriendsActivity" />

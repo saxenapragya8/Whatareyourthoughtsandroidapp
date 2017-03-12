@@ -2,10 +2,10 @@
     android:layout_width="match_parent"
     android:orientation="horizontal"
     android:descendantFocusability="blocksDescendants"
-    android:paddingTop="16dp"
-    android:paddingBottom="12dp"
-    android:paddingEnd="16dp"
-    android:paddingStart="16dp"
+    android:paddingTop="@dimen/_12"
+    android:paddingBottom="@dimen/_12"
+    android:paddingEnd="@dimen/_16"
+    android:paddingStart="@dimen/_16"
     android:layout_height="wrap_content"
     android:background="@android:color/white">
 
@@ -16,8 +16,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="2dp">
+        android:layout_marginStart="@dimen/_8"
+        android:layout_marginTop="@dimen/_2">
 
         <ImageButton
             android:id="@+id/unread_button"
@@ -33,13 +33,13 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:layout_marginStart="48dp">
+        android:layout_marginStart="@dimen/_48">
 
         <RelativeLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="end"
-            android:layout_marginBottom="-21dp">
+            android:layout_marginBottom="@dimen/_neg_21">
 
             <TextView
                 android:id="@+id/modifiedLastDate"
@@ -56,11 +56,11 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:layout_marginBottom="1dp">
+            android:layout_marginBottom="@dimen/_1">
 
             <TextView
                 android:id="@+id/conversationName"
-                android:layout_width="0dp"
+                android:layout_width="@dimen/_0"
                 android:layout_height="wrap_content"
                 android:layout_weight=".70"
                 android:textStyle="bold"
@@ -80,7 +80,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:lines="1"
-            android:layout_marginBottom="1dp" />
+            android:layout_marginBottom="@dimen/_1" />
         <!-- TODO only first name in comma separated list -->
 
         <TextView

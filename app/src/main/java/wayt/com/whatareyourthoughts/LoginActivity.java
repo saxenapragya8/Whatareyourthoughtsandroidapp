@@ -45,6 +45,7 @@ import com.google.android.gms.auth.api.signin.GoogleSignInResult;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GooglePlayServicesUtil;
 import com.google.android.gms.common.Scopes;
+import com.google.android.gms.common.SignInButton;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.common.api.ResultCallback;
 import com.google.android.gms.common.api.Scope;
@@ -106,7 +107,8 @@ public class LoginActivity extends AppCompatActivity {
         checkGooglePlayServicesAvailability();
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(policy);
-        Button mEmailSignInButton = (Button) findViewById(R.id.email_sign_in_button);
+        SignInButton mEmailSignInButton = (SignInButton) findViewById(R.id.email_sign_in_button);
+        mEmailSignInButton.setSize(SignInButton.SIZE_WIDE);
         mEmailSignInButton.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {

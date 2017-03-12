@@ -19,24 +19,24 @@
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             android:background="?attr/colorPrimary"
-            android:elevation="4dp"
-            android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
+            android:elevation="@dimen/_4"
+            android:paddingEnd="@dimen/_0"
+            android:paddingStart="@dimen/_0"
             android:popupTheme="@style/ThemeOverlay.AppCompat.Light"
-            android:paddingEnd="0dp"
-            android:paddingStart="0dp">
+            android:theme="@style/ThemeOverlay.AppCompat.ActionBar">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:orientation="horizontal"
-                android:gravity="center_vertical|start">
+                android:gravity="center_vertical|start"
+                android:orientation="horizontal">
 
                 <Button
                     android:id="@+id/drawer_button"
+                    android:layout_width="@dimen/_32"
+                    android:layout_height="@dimen/_32"
                     android:background="@mipmap/ic_menu"
                     android:gravity="start"
-                    android:layout_height="32dp"
-                    android:layout_width="32dp"
                     android:onClick="onDrawerButtonClick" />
 
                 <TextView
@@ -45,7 +45,7 @@
                     android:gravity="center_vertical"
                     android:paddingStart="16dp"
                     android:text="@string/title_conversations"
-                    android:textColor="@color/colorTitle"
+                    android:textColor="@color/colorWhite"
                     android:textSize="20sp"
                     android:textStyle="bold"
                     android:title="@string/title_conversations" />
@@ -56,27 +56,30 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
+
             <ListView
                 android:id="@android:id/list"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_alignParentTop="true"
                 android:layout_alignParentStart="true"
-                android:divider="#FFFFFF">
+                android:layout_alignParentTop="true"
+                android:divider="@color/colorWhite">
             </ListView>
+
         </RelativeLayout>
 
         <android.support.design.widget.FloatingActionButton
             android:id="@+id/fab"
+            android:layout_width="@dimen/_60"
+            android:layout_height="@dimen/_60"
             android:layout_gravity="end"
+            android:layout_marginEnd="@dimen/_16"
+            android:layout_marginTop="@dimen/_neg_80"
             android:onClick="onAddConvButtonClick"
-            app:srcCompat="@mipmap/ic_create"
-            android:layout_marginTop="-80dp"
-            android:layout_marginEnd="16dp"
-            app:elevation="24dp"
+            app:elevation="@dimen/_6"
             app:fabSize="normal"
-            android:layout_width="60dp"
-            android:layout_height="60dp" />
+            app:pressedTranslationZ="@dimen/_6"
+            app:srcCompat="@mipmap/ic_create" />
 
     </LinearLayout>
 
