@@ -75,11 +75,11 @@
             android:layout_gravity="end"
             android:layout_marginEnd="@dimen/_16"
             android:layout_marginTop="@dimen/_neg_80"
-            android:onClick="onAddConvButtonClick"
             app:elevation="@dimen/_6"
             app:fabSize="normal"
             app:pressedTranslationZ="@dimen/_6"
-            app:srcCompat="@mipmap/ic_create" />
+            app:srcCompat="@mipmap/ic_create"
+            android:onClick="onAddConvButtonClick" />
 
     </LinearLayout>
 
