@@ -6,5 +6,18 @@
     <dimen name="fab_margin">16dp</dimen>
     <dimen name="text_margin">16dp</dimen>
 
-    <dimen name="no_">16dp</dimen>
+    <dimen name="_0">0dp</dimen>
+    <dimen name="_1">1dp</dimen>
+    <dimen name="_2">2dp</dimen>
+    <dimen name="_4">4dp</dimen>
+    <dimen name="_6">6dp</dimen>
+    <dimen name="_8">8dp</dimen>
+    <dimen name="_12">12dp</dimen>
+    <dimen name="_16">16dp</dimen>
+    <dimen name="_32">32dp</dimen>
+    <dimen name="_48">48dp</dimen>
+    <dimen name="_60">60dp</dimen>
+    <dimen name="_neg_21">-21dp</dimen>
+    <dimen name="_neg_80">-80dp</dimen>
+
 </resources>
