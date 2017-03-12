@@ -16,7 +16,7 @@ import wayt.com.whatareyourthoughts.network.model.Friends;
 public class ShowFriendsActivity extends AppCompatActivity {
 
     static DisplayFriendListAdapter adapter;
-    static List<Friends> friendData;
+    static List<Friends> friendData= new ArrayList<Friends>();;
 
     public static void addToAdapter(Friends data){
         if(data != null) {
