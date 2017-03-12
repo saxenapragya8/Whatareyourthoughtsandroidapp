@@ -20,6 +20,8 @@
 
     <string name="open">Open</string>
     <string name="close">Close</string>
+    <string name="menu_conversations">Deep Conversations</string>
+    <string name="menu_people">Right People</string>
 
     <string name="large_text">
         "Material is the metaphor.\n\n"

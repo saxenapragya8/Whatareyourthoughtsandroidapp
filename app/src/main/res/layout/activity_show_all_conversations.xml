@@ -33,7 +33,7 @@
 
                 <Button
                     android:id="@+id/drawer_button"
-                    android:background="@mipmap/ic_menu_white_24dp"
+                    android:background="@mipmap/ic_menu"
                     android:gravity="start"
                     android:layout_height="32dp"
                     android:layout_width="32dp"
@@ -42,12 +42,13 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:title="@string/title_conversations"
-                    android:text="@string/title_conversations"
-                    android:textSize="20sp"
-                    android:textColor="@color/colorTitle"
                     android:gravity="center_vertical"
-                    android:paddingStart="16dp" />
+                    android:paddingStart="16dp"
+                    android:text="@string/title_conversations"
+                    android:textColor="@color/colorTitle"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    android:title="@string/title_conversations" />
 
             </LinearLayout>
         </Toolbar>
@@ -69,7 +70,7 @@
             android:id="@+id/fab"
             android:layout_gravity="end"
             android:onClick="onAddConvButtonClick"
-            app:srcCompat="@mipmap/ic_create_white_24dp"
+            app:srcCompat="@mipmap/ic_create"
             android:layout_marginTop="-80dp"
             android:layout_marginEnd="16dp"
             app:elevation="24dp"
