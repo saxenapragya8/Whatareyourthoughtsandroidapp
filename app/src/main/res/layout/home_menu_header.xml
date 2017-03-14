@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@mipmap/ic_nav_head">
+
+    <ImageView xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/profile_image"
+        android:layout_width="@dimen/_64"
+        android:layout_height="@dimen/_64"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="@dimen/_16"
+        android:layout_marginTop="@dimen/_40"
+        android:src="@mipmap/notification_icon" />
+
+    <TextView
+        android:id="@+id/username"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/profile_image"
+        android:layout_below="@+id/profile_image"
+        android:layout_marginTop="@dimen/_16"
+        android:gravity="start"
+        android:text="Pranav Gupta"
+        android:textColor="#FFF"
+        android:textSize="14sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/email"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/username"
+        android:layout_below="@+id/username"
+        android:layout_marginTop="@dimen/_4"
+        android:gravity="start"
+        android:text="bean.pranav@gmail.com"
+        android:textColor="#fff"
+        android:textSize="14sp" />
+
+</RelativeLayout>

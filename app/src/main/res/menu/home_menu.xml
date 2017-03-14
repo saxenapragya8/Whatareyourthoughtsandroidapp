@@ -1,23 +1,82 @@
-<menu xmlns:android="http://schemas.android.com/apk/res/android">
+<menu xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <!-- "Mark Favorite", should appear as action button if possible -->
-    <item
-        android:id="@+id/navConversations"
-        android:icon="@mipmap/ic_inbox"
-        android:title="@string/menu_conversations"/>
-        <!--app:showAsAction="ifRoom"-->
+    <item android:title="@string/menu_conversations">
+        <menu>
+            <group
+                android:id="@+id/conversations"
+                android:checkableBehavior="single">
 
-    <item
-        android:id="@+id/navFriends"
-        android:icon="@mipmap/ic_people"
-        android:title="@string/menu_people"/>
-    <item
-        android:id="@+id/navProfile"
-        android:icon="@mipmap/ic_create"
-        android:title="@string/title_conversations"/>
-    <!-- Settings, should always be in the overflow -->
-    <!--<item android:id="@+id/action_settings"-->
-        <!--android:title="@string/action_settings"-->
-        <!--app:showAsAction="never"/>-->
+                <item
+                    android:id="@+id/navConversations"
+                    android:icon="@mipmap/ic_inbox"
+                    android:title="@string/menu_inbox" />
+            </group>
+        </menu>
+    </item>
+
+    <item android:title="@string/menu_people">
+        <menu>
+            <group
+                android:id="@+id/people"
+                android:checkableBehavior="single">
+
+                <item
+                    android:id="@+id/navFriends"
+                    android:icon="@mipmap/ic_star"
+                    android:title="friend name" />
+                <!-- iterate over all friends -->
+
+                <item
+                    android:id="@+id/navFriends"
+                    android:icon="@mipmap/ic_star"
+                    android:title="friend name" />
+                <!-- iterate over all friends -->
+
+                <item
+                    android:id="@+id/navFriends"
+                    android:icon="@mipmap/ic_star"
+                    android:title="friend name" />
+                <!-- iterate over all friends -->
+
+                <item
+                    android:id="@+id/navFriends"
+                    android:icon="@mipmap/ic_star"
+                    android:title="friend name" />
+                <!-- iterate over all friends -->
+
+                <item
+                    android:id="@+id/navPendingFriends"
+                    android:icon="@mipmap/ic_more_horiz"
+                    android:title="pending friend name" />
+                <!-- iterate over pending status friends -->
+
+                <item
+                    android:id="@+id/navAddFriend"
+                    android:icon="@mipmap/ic_add"
+                    android:title="@string/menu_add_person" />
+            </group>
+        </menu>
+    </item>
+
+    <group
+        android:id="@+id/settings"
+        android:checkableBehavior="single">
+
+        <item
+            android:id="@+id/navInvite"
+            android:icon="@mipmap/ic_invite"
+            android:title="@string/menu_invite" />
+
+        <item
+            android:id="@+id/navSettings"
+            android:icon="@mipmap/ic_settings"
+            android:title="@string/menu_settings" />
+
+        <item
+            android:id="@+id/navHelp"
+            android:icon="@mipmap/ic_help"
+            android:title="@string/menu_help" />
+    </group>
 
 </menu>

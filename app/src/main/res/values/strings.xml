@@ -22,10 +22,15 @@
     <string name="open">Open</string>
     <string name="close">Close</string>
     <string name="menu_conversations">Deep Conversations</string>
+    <string name="menu_inbox">Inbox</string>
     <string name="menu_people">Right People</string>
+    <string name="menu_add_person">Add Friend</string>
+    <string name="menu_invite">Invite a Friend</string>
+    <string name="menu_settings">Settings</string>
+    <string name="menu_help">Help &amp; Feedback</string>
 
     <string name="large_text">
-        "Material is the metaphor.\n\n"
+        "Material is the metaphor."
 
         "A material metaphor is the unifying theory of a rationalized space and a system of motion."
         "The material is grounded in tactile reality, inspired by the study of paper and ink, yet "

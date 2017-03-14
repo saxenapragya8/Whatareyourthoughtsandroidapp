@@ -14,10 +14,12 @@
     <dimen name="_8">8dp</dimen>
     <dimen name="_12">12dp</dimen>
     <dimen name="_16">16dp</dimen>
+    <dimen name="_24">24dp</dimen>
     <dimen name="_32">32dp</dimen>
+    <dimen name="_40">40dp</dimen>
     <dimen name="_48">48dp</dimen>
     <dimen name="_60">60dp</dimen>
-    <dimen name="_neg_21">-21dp</dimen>
+    <dimen name="_64">64dp</dimen>
     <dimen name="_neg_80">-80dp</dimen>
 
 </resources>

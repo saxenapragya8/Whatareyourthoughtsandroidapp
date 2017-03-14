@@ -2,96 +2,85 @@
     android:layout_width="match_parent"
     android:orientation="horizontal"
     android:descendantFocusability="blocksDescendants"
-    android:paddingTop="@dimen/_12"
-    android:paddingBottom="@dimen/_12"
-    android:paddingEnd="@dimen/_16"
-    android:paddingStart="@dimen/_16"
     android:layout_height="wrap_content"
     android:background="@android:color/white">
 
-    <LinearLayout
-        android:id="@+id/checkBox"
-        android:focusable="false"
-        android:descendantFocusability="blocksDescendants"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:layout_marginStart="@dimen/_8"
-        android:layout_marginTop="@dimen/_2">
-
-        <ImageButton
-            android:id="@+id/unread_button"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@mipmap/unread" />
-        <!--TODO switch image background with "@mipmap/read"-->
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/subject_date"
+    <TextView
+        android:id="@+id/userNames"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:layout_marginStart="@dimen/_48">
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="@dimen/_16"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="@dimen/_64"
+        android:layout_toStartOf="@+id/modifiedLastDate"
+        android:lines="1"
+        android:textColor="@color/colorBlack"
+        android:textSize="14sp"
+        android:text="Pranav, Pragya (2)" />
 
-        <RelativeLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="end"
-            android:layout_marginBottom="@dimen/_neg_21">
+    <TextView
+        android:id="@+id/modifiedLastDate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="@dimen/_16"
+        android:layout_marginEnd="@dimen/_16"
+        android:layout_marginTop="@dimen/_16"
+        android:gravity="end"
+        android:lines="1"
+        android:textColor="@color/colorGrey"
+        android:textSize="14sp"
+        android:text="Feb 12" />
+    <!-- TODO change date format: see github web code -->
 
-            <TextView
-                android:id="@+id/modifiedLastDate"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textColor="@color/colorGrey"
-                android:lines="1"
-                android:gravity="end" />
-            <!-- TODO change date format: see github web code -->
+    <TextView
+        android:id="@+id/conversationName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/userNames"
+        android:layout_marginTop="@dimen/_1"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="@dimen/_64"
+        android:layout_marginEnd="@dimen/_16"
+        android:lines="1"
+        android:ellipsize="end"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        android:textColor="@color/colorBlack"
+        android:text="Test Conversation Title" />
+    <!-- TODO only first name in comma separated list -->
 
-        </RelativeLayout>
+    <ImageButton
+        android:id="@+id/unread_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="@dimen/_24"
+        android:layout_alignTop="@+id/conversationName"
+        android:layout_marginTop="@dimen/_4"
+        android:background="@mipmap/ic_unread" />
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_marginBottom="@dimen/_1">
+    <!--TODO switch image background with "@mipmap/read"-->
+    <!--android:descendantFocusability="blocksDescendants"-->
+    <!--android:focusable="false"-->
 
-            <TextView
-                android:id="@+id/conversationName"
-                android:layout_width="@dimen/_0"
-                android:layout_height="wrap_content"
-                android:layout_weight=".70"
-                android:textStyle="bold"
-                android:textSize="16sp"
-                android:lines="1"
-                android:ellipsize="end" />
-
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight=".30" />
-
-        </LinearLayout>
-
-        <TextView
-            android:id="@+id/userNames"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:lines="1"
-            android:layout_marginBottom="@dimen/_1" />
-        <!-- TODO only first name in comma separated list -->
-
-        <TextView
-            android:id="@+id/content"
-            android:lines="2"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textColor="@color/colorGrey" />
-        <!-- TODO remove line break tags from content -->
-
-    </LinearLayout>
+    <TextView
+        android:id="@+id/content"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/conversationName"
+        android:layout_marginTop="@dimen/_2"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="@dimen/_64"
+        android:layout_marginEnd="@dimen/_16"
+        android:layout_marginBottom="@dimen/_16"
+        android:lines="3"
+        android:textColor="@color/colorGrey"
+        android:textSize="14sp"
+        android:text="@string/large_text" />
+    <!-- TODO remove line break tags from content -->
 
 </RelativeLayout>
 

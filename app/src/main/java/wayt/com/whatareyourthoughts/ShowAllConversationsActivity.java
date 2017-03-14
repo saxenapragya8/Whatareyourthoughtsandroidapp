@@ -67,7 +67,7 @@ public class ShowAllConversationsActivity extends ListActivity{
                         Intent showFriendActivity = new Intent(ShowAllConversationsActivity.this, ShowFriendsActivity.class);
                         startActivity(showFriendActivity);
                         break;
-                    case R.id.navProfile: // etc,
+                    case R.id.navSettings: // etc,
                 }
                 return true;
             }
