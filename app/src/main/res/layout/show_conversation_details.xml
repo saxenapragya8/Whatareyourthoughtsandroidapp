@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/conversation_details"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_alignParentStart="true"
+    android:layout_alignParentTop="true"
+    android:layout_margin="@dimen/_16">
+
+    <TextView
+        android:id="@+id/userNames"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_toStartOf="@+id/modifiedLastDate"
+        android:lines="1"
+        android:fontFamily="@string/fontStyleBody1"
+        android:textColor="@color/colorBody1"
+        android:textSize="@dimen/textSizeBody1"
+        android:text="Pranav, Pragya (2)" />
+
+    <TextView
+        android:id="@+id/modifiedLastDate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignBottom="@id/userNames"
+        android:layout_marginStart="@dimen/_16"
+        android:gravity="end"
+        android:lines="1"
+        android:fontFamily="@string/fontStyleCaption"
+        android:textColor="@color/colorCaption"
+        android:textSize="@dimen/textSizeCaption"
+        android:text="Feb 12" />
+    <!-- TODO change date format: see github web code -->
+
+    <TextView
+        android:id="@+id/conversation_subject"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_below="@id/userNames"
+        android:layout_marginTop="@dimen/_8"
+        android:fontFamily="@string/fontStyleHeadline"
+        android:textColor="@color/colorHeadline"
+        android:textSize="@dimen/textSizeHeadline"
+        android:text="Test Conversation Title" />
+
+    <TextView
+        android:id="@+id/inspiration"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_below="@id/conversation_subject"
+        android:layout_marginTop="@dimen/_8"
+        android:fontFamily="@string/fontStyleBody2"
+        android:textColor="@color/colorPrimary"
+        android:textSize="@dimen/textSizeBody2"
+        android:text="Inspiration" />
+
+</RelativeLayout>

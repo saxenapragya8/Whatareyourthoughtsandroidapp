@@ -18,8 +18,18 @@
     <dimen name="_32">32dp</dimen>
     <dimen name="_40">40dp</dimen>
     <dimen name="_48">48dp</dimen>
+    <dimen name="_56">56dp</dimen>
     <dimen name="_60">60dp</dimen>
     <dimen name="_64">64dp</dimen>
     <dimen name="_neg_80">-80dp</dimen>
+
+    <!-- Font Sizes-->
+    <dimen name="textSizeHeadline">24sp</dimen>
+    <dimen name="textSizeTitle">20sp</dimen>
+    <dimen name="textSizeSubheading">16sp</dimen>
+    <dimen name="textSizeBody1">14sp</dimen>
+    <dimen name="textSizeBody2">14sp</dimen>
+    <dimen name="textSizeBody3">14sp</dimen>
+    <dimen name="textSizeCaption">12sp</dimen>
 
 </resources>

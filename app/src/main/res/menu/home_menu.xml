@@ -11,6 +11,11 @@
                     android:id="@+id/navConversations"
                     android:icon="@mipmap/ic_inbox"
                     android:title="@string/menu_inbox" />
+
+                <item
+                    android:id="@+id/navArchives"
+                    android:icon="@mipmap/ic_archive"
+                    android:title="@string/menu_archive" />
             </group>
         </menu>
     </item>
@@ -20,18 +25,6 @@
             <group
                 android:id="@+id/people"
                 android:checkableBehavior="single">
-
-                <item
-                    android:id="@+id/navFriends"
-                    android:icon="@mipmap/ic_star"
-                    android:title="friend name" />
-                <!-- iterate over all friends -->
-
-                <item
-                    android:id="@+id/navFriends"
-                    android:icon="@mipmap/ic_star"
-                    android:title="friend name" />
-                <!-- iterate over all friends -->
 
                 <item
                     android:id="@+id/navFriends"
