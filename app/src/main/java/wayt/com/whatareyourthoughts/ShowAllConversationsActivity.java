@@ -39,7 +39,7 @@ public class ShowAllConversationsActivity extends ListActivity{
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_show_all_conversations);
+        setContentView(R.layout.show_inbox);
         Intent intent = getIntent();
             DatabaseReference ref = RealtimeDbWriter.getInstance(this).getDbReference().child(RealtimeDbConstants.APP_ID).child(RealtimeDbConstants.CONVERSATIONS);
             adapter = new DisplayDataAdapter(displayData, this);
@@ -56,7 +56,7 @@ public class ShowAllConversationsActivity extends ListActivity{
         mDrawerLayout.openDrawer(Gravity.LEFT);
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.navigation_view);
-        navigationView.getMenu().getItem(0).setChecked(true);
+        navigationView.getMenu().getItem(2).setChecked(true); //what's happening?
         navigationView.setNavigationItemSelectedListener(new  NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {

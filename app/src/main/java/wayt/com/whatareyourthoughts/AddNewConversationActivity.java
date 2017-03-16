@@ -3,16 +3,13 @@ package wayt.com.whatareyourthoughts;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.support.design.widget.TextInputEditText;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.Html;
 import android.view.View;
 import android.widget.EditText;
-import android.widget.TextView;
 
-import wayt.com.whatareyourthoughts.network.HttpRequestSender;
 import wayt.com.whatareyourthoughts.network.RealtimeDbWriter;
 
 public class AddNewConversationActivity extends AppCompatActivity {
@@ -20,10 +17,15 @@ public class AddNewConversationActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_add_new_conversation);
+        setContentView(R.layout.new_conversation);
     }
 
-    public void onSaveDataClicked(View view){
+    public void onBackButtonClick(View view) {
+        Intent allConversations = new Intent(this, ShowAllConversationsActivity.class);
+        startActivity(allConversations);
+    }
+
+    public void onSendButtonClick(View view){
         EditText content = (EditText) this.findViewById(R.id.content);
         EditText inspiration = (EditText)this.findViewById(R.id.inspiration);
         EditText subject = (EditText)this.findViewById(R.id.subject);

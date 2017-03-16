@@ -8,21 +8,13 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
-import java.util.Date;
-import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Locale;
-import java.util.Map;
 import java.util.Set;
 
 import wayt.com.whatareyourthoughts.R;
@@ -63,7 +55,7 @@ public class DisplayDataAdapter extends BaseAdapter{
         if(convertView == null)
         {
             LayoutInflater inflater = (LayoutInflater) ctx.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            convertView = inflater.inflate(R.layout.display_conversations_row, parent,false);
+            convertView = inflater.inflate(R.layout.details_inbox_item, parent,false);
         }
 
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd", Locale.US);

@@ -6,10 +6,11 @@
     android:layout_height="wrap_content"
     android:layout_alignParentStart="true"
     android:layout_alignParentTop="true"
-    android:layout_margin="@dimen/_16">
+    android:padding="@dimen/_16"
+    android:background="@color/colorWhite">
 
     <TextView
-        android:id="@+id/userNames"
+        android:id="@+id/participants"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
@@ -22,11 +23,11 @@
         android:text="Pranav, Pragya (2)" />
 
     <TextView
-        android:id="@+id/modifiedLastDate"
+        android:id="@+id/date"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
-        android:layout_alignBottom="@id/userNames"
+        android:layout_alignBottom="@id/participants"
         android:layout_marginStart="@dimen/_16"
         android:gravity="end"
         android:lines="1"
@@ -41,7 +42,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
-        android:layout_below="@id/userNames"
+        android:layout_below="@id/participants"
         android:layout_marginTop="@dimen/_8"
         android:fontFamily="@string/fontStyleHeadline"
         android:textColor="@color/colorHeadline"

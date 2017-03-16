@@ -4,8 +4,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
@@ -16,7 +14,6 @@ import android.widget.TextView;
 import java.util.Map;
 
 import wayt.com.whatareyourthoughts.adapters.ConversationCommentAdapter;
-import wayt.com.whatareyourthoughts.network.HttpRequestSender;
 import wayt.com.whatareyourthoughts.network.RealtimeDbWriter;
 import wayt.com.whatareyourthoughts.network.model.CommentData;
 import wayt.com.whatareyourthoughts.network.model.ConversationsData;
@@ -38,7 +35,7 @@ public class ShowConversationCommentsActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_show_conversation_comments);
+        setContentView(R.layout.show_conversation);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -49,7 +46,7 @@ public class ShowConversationCommentsActivity extends AppCompatActivity {
 //        TextView date = (TextView)findViewById(R.id.date);
 //        date.setText(data.getAllComments().get(0).getModifiedDate().toString());
 
-        TextView subject = (TextView)findViewById(R.id.subject);
+        TextView subject = (TextView)findViewById(R.id.conversation_subject);
         subject.setText(data.getSubject());
 
         TextView inspiration = (TextView)findViewById(R.id.inspiration);
@@ -60,7 +57,12 @@ public class ShowConversationCommentsActivity extends AppCompatActivity {
         displayComments.setAdapter(adapter);
     }
 
-    public void onCommentAddClicked(View addConvButton) {
+    public void onBackButtonClick(View view) {
+        Intent allConversations = new Intent(this, ShowAllConversationsActivity.class);
+        startActivity(allConversations);
+    }
+
+    public void onSendButtonClick(View addConvButton) {
         EditText comment = (EditText)findViewById(R.id.newComment);
         String newCommentText = comment.getText().toString();
         String convId = data.getConvId();

@@ -14,8 +14,11 @@
     <string name="permission_rationale">"Contacts permissions are needed for providing email
         completions."
     </string>
+
+    <!-- Page Titles -->
     <string name="title_conversations">Conversations</string>
     <string name="title_people">Right People</string>
+    <string name="title_compose">Compose</string>
 
     <!-- Strings for Menu-->
     <string name="open">Open</string>
@@ -29,6 +32,8 @@
     <string name="menu_settings">Settings</string>
     <string name="menu_help">Help &amp; Feedback</string>
 
+    <string name="hint_comment">What are your thoughts?</string>
+
     <string name="large_text">
         "Material is the metaphor."
 
@@ -38,7 +43,7 @@
         "Surfaces and edges of the material provide visual cues that are grounded in reality. The "
         "use of familiar tactile attributes helps users quickly understand affordances. Yet the "
         "flexibility of the material creates new affordances that supercede those in the physical "
-        "world, without breaking the rules of physics.\n"
+        "world, without breaking the rules of physics."
     </string>
     <string name="action_settings">Settings</string>
     <string name="title_activity_show_conversation_comments">ShowConversationCommentsActivity

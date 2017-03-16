@@ -2,20 +2,66 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/activity_add_new_conversation"
-    android:parentActivityName="wayt.com.whatareyourthoughts.ShowAllConversationsActivity"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="wayt.com.whatareyourthoughts.AddNewConversationActivity">
 
+    <Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/colorPrimary"
+        android:elevation="@dimen/_4"
+        android:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+        android:theme="@style/ThemeOverlay.AppCompat.ActionBar">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical">
+
+            <Button
+                android:id="@+id/back_button"
+                android:layout_width="@dimen/_32"
+                android:layout_height="@dimen/_32"
+                android:background="@mipmap/ic_arrow_back"
+                android:gravity="start"
+                android:onClick="onBackButtonClick" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignTop="@+id/back_button"
+                android:layout_marginTop="2dp"
+                android:layout_toEndOf="@+id/back_button"
+                android:fontFamily="@string/fontStyleTitle"
+                android:paddingEnd="@dimen/_0"
+                android:paddingStart="@dimen/_16"
+                android:text="@string/title_compose"
+                android:textColor="@color/colorInvert"
+                android:textSize="@dimen/textSizeTitle" />
+
+            <Button
+                android:id="@+id/send_button"
+                android:layout_width="@dimen/_32"
+                android:layout_height="@dimen/_32"
+                android:layout_alignParentEnd="true"
+                android:layout_marginEnd="@dimen/_16"
+                android:background="@mipmap/ic_send"
+                android:backgroundTint="@color/colorPrimaryDark"
+                android:clickable="false"
+                android:onClick="onSendButtonClick" />
+            <!-- TODO: make clickable: true and backgroundTint = colorWhite IF comment has text -->
+
+        </RelativeLayout>
+
+    </Toolbar>
 
     <GridLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:columnCount="8">
+        android:columnCount="8"
+        android:layout_below="@+id/toolbar">
         <TextView
             android:layout_columnSpan="2"
             android:text="To: "
@@ -64,10 +110,6 @@
             android:id="@+id/content"
             android:minLines="10"
             android:layout_gravity="top"/>
-        <Button
-            android:text="Add"
-            android:onClick="onSaveDataClicked"
-            android:layout_gravity="bottom"/>
 
     </GridLayout>
 

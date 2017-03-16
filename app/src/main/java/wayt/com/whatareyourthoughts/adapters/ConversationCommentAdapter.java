@@ -8,13 +8,8 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
-import org.w3c.dom.Comment;
-
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Locale;
 import java.util.Map;
 
 import wayt.com.whatareyourthoughts.R;
@@ -60,7 +55,7 @@ public class ConversationCommentAdapter extends BaseAdapter{
 
             if (convertView == null) {
                 LayoutInflater inflater = (LayoutInflater) ctx.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-                convertView = inflater.inflate(R.layout.conversation_comment_row, parent, false);
+                convertView = inflater.inflate(R.layout.details_conversation_item, parent, false);
             }
 
             CommentData item = commentsData.get(position);
@@ -78,7 +73,7 @@ public class ConversationCommentAdapter extends BaseAdapter{
         } else {
             if (convertView == null) {
                 LayoutInflater inflater = (LayoutInflater) ctx.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-                convertView = inflater.inflate(R.layout.new_comment_row, parent, false);
+                convertView = inflater.inflate(R.layout.details_conversation_new_comment, parent, false);
             }
             return convertView;
         }
