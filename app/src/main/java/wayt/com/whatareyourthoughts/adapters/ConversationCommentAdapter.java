@@ -26,8 +26,8 @@ public class ConversationCommentAdapter extends BaseAdapter{
 //    private String inspiration;
 //    private List<String> participantList;
 
-    public ConversationCommentAdapter(Map<String, CommentData> comments, Context ctx){
-        commentsData = new ArrayList<>(comments.values());
+    public ConversationCommentAdapter(List<CommentData> comments, Context ctx){
+        commentsData = comments;
 //        this.subject = subject;
 //        this.inspiration = inspiration;
 //        this.participantList = data.getParticipantUsers();

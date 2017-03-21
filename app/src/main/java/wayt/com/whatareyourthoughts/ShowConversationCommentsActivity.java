@@ -11,6 +11,10 @@ import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.List;
 import java.util.Map;
 
 import wayt.com.whatareyourthoughts.adapters.ConversationCommentAdapter;
@@ -52,7 +56,11 @@ public class ShowConversationCommentsActivity extends AppCompatActivity {
         TextView inspiration = (TextView)findViewById(R.id.inspiration);
         inspiration.setText(data.getInspiration());
 
-        adapter = new ConversationCommentAdapter(data.getComments(), this);
+        Collection<CommentData> convCommData = data.getComments().values();
+        List<CommentData> sortedCommentsByCreationTime = new ArrayList<CommentData>(convCommData);
+        Collections.sort(sortedCommentsByCreationTime);
+
+        adapter = new ConversationCommentAdapter(sortedCommentsByCreationTime, this);
         ListView displayComments = (ListView)findViewById(R.id.displayCommentsListView);
         displayComments.setAdapter(adapter);
     }

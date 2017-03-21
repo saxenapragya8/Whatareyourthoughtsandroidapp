@@ -1,5 +1,6 @@
 package wayt.com.whatareyourthoughts;
 
+import android.app.Activity;
 import android.app.ListActivity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -7,8 +8,11 @@ import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.Gravity;
 import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ListView;
 
@@ -18,11 +22,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 import wayt.com.whatareyourthoughts.adapters.DisplayDataAdapter;
+import wayt.com.whatareyourthoughts.adapters.listeners.OnConversationClickedListener;
 import wayt.com.whatareyourthoughts.network.RealtimeDbConstants;
 import wayt.com.whatareyourthoughts.network.RealtimeDbWriter;
 import wayt.com.whatareyourthoughts.network.model.ConversationsData;
 
-public class ShowAllConversationsActivity extends ListActivity{
+public class ShowAllConversationsActivity extends Activity{
     private static DisplayDataAdapter adapter;
     private DrawerLayout mDrawerLayout;
     private ActionBarDrawerToggle mDrawerToggle;
@@ -41,9 +46,18 @@ public class ShowAllConversationsActivity extends ListActivity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.show_inbox);
         Intent intent = getIntent();
-            DatabaseReference ref = RealtimeDbWriter.getInstance(this).getDbReference().child(RealtimeDbConstants.APP_ID).child(RealtimeDbConstants.CONVERSATIONS);
-            adapter = new DisplayDataAdapter(displayData, this);
-            setListAdapter(adapter);
+        RecyclerView recyclerView = (RecyclerView) findViewById(R.id.conversationRecyclerView);
+
+        recyclerView.setHasFixedSize(true);
+
+        // use a linear layout manager
+        LinearLayoutManager mLayoutManager = new LinearLayoutManager(this);
+        recyclerView.setLayoutManager(mLayoutManager);
+        OnConversationClickedListener recViewClickListener = new OnConversationClickedListener(recyclerView, this);
+
+        adapter = new DisplayDataAdapter(displayData, this, recViewClickListener);
+        recyclerView.setAdapter(adapter);
+
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         mDrawerToggle = new ActionBarDrawerToggle(this, mDrawerLayout, R.string.open, R.string.close);
 
@@ -78,12 +92,12 @@ public class ShowAllConversationsActivity extends ListActivity{
         Intent addNewConvActivity = new Intent(addConvButton.getContext(), AddNewConversationActivity.class);
         startActivity(addNewConvActivity);
     }
-
-    @Override
-    protected void onListItemClick(ListView l, View v, int position, long id) {
-        ConversationsData displayDataClicked = (ConversationsData)adapter.getItem(position);
-        Intent conversationCommentsActivity = new Intent(v.getContext(), ShowConversationCommentsActivity.class);
-        conversationCommentsActivity.putExtra("commentData", displayDataClicked);
-        startActivity(conversationCommentsActivity);
-    }
+//
+//    @Override
+//    protected void onListItemClick(ListView l, View v, int position, long id) {
+//        ConversationsData displayDataClicked = (ConversationsData)adapter.getItem(position);
+//        Intent conversationCommentsActivity = new Intent(v.getContext(), ShowConversationCommentsActivity.class);
+//        conversationCommentsActivity.putExtra("commentData", displayDataClicked);
+//        startActivity(conversationCommentsActivity);
+//    }
 }
