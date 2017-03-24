@@ -5,6 +5,8 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.EditText;
@@ -61,7 +63,12 @@ public class ShowConversationCommentsActivity extends AppCompatActivity {
         Collections.sort(sortedCommentsByCreationTime);
 
         adapter = new ConversationCommentAdapter(sortedCommentsByCreationTime, this);
-        ListView displayComments = (ListView)findViewById(R.id.displayCommentsListView);
+        RecyclerView displayComments = (RecyclerView)findViewById(R.id.displayCommentsRecyclerView);
+
+        // use a linear layout manager
+        LinearLayoutManager mLayoutManager = new LinearLayoutManager(this);
+        displayComments.setLayoutManager(mLayoutManager);
+
         displayComments.setAdapter(adapter);
     }
 
